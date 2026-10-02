@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "z+yeGQ3dNXE=",
+  "dgSpecHash": "xiktDqsh6JY=",
   "success": true,
   "projectFilePath": "/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/SupportFlow.Api.csproj",
   "expectedPackageFiles": [
     "/Users/adamkosovic/.nuget/packages/microsoft.aspnetcore.openapi/9.0.1/microsoft.aspnetcore.openapi.9.0.1.nupkg.sha512",
-    "/Users/adamkosovic/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512"
+    "/Users/adamkosovic/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
+    "/Users/adamkosovic/.nuget/packages/swashbuckle.aspnetcore.swaggerui/10.2.3/swashbuckle.aspnetcore.swaggerui.10.2.3.nupkg.sha512"
   ],
   "logs": []
 }

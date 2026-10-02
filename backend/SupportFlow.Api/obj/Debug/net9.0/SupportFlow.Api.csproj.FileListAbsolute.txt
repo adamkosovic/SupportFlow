@@ -31,3 +31,5 @@
 /Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.pdb
 /Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.genruntimeconfig.cache
 /Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/ref/SupportFlow.Api.dll
+/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.sourcelink.json
+/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
