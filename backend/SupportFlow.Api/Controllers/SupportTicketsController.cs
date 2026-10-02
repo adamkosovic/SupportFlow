@@ -67,6 +67,32 @@ public class SupportTicketsController : ControllerBase
             ticket
         );
     }
+
+    [HttpPatch("{id:int}/status")]
+    public async Task<ActionResult<SupportTicket>> UpdateStatus(
+        int id,
+        UpdateTicketStatusRequest request)
+    {
+        var allowedStatuses = new[] { "Nytt", "Pågår", "Löst" };
+
+        if (!allowedStatuses.Contains(request.Status))
+        {
+            return BadRequest("Status måste vara Nytt, Pågår eller Löst.");
+        }
+
+        var ticket = await _context.Tickets.FindAsync(id);
+
+        if (ticket is null)
+        {
+            return NotFound();
+        }
+
+        ticket.Status = request.Status;
+
+        await _context.SaveChangesAsync();
+
+        return Ok(ticket);
+    }
 }
 
 public class CreateTicketRequest
@@ -74,4 +100,9 @@ public class CreateTicketRequest
     public string Title { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
+}
+
+public class UpdateTicketStatusRequest
+{
+    public string Status { get; set; } = string.Empty;
 }
