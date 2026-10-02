@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "CVvkSr1NHOGJCzkSkotYyMK21Ltp7rXZVyMcJt3A+yw=",
+  "Source": "SupportFlow.Api",
+  "BasePath": "_content/SupportFlow.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
