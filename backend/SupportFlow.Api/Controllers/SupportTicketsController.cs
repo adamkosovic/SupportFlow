@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using SupportFlow.Api.Data;
 using SupportFlow.Api.Models;
 
 namespace SupportFlow.Api.Controllers;
@@ -7,18 +9,30 @@ namespace SupportFlow.Api.Controllers;
 [Route("api/tickets")]
 public class SupportTicketsController : ControllerBase
 {
-    private static readonly List<SupportTicket> Tickets = new();
+    private readonly AppDbContext _context;
+
+    public SupportTicketsController(AppDbContext context)
+    {
+        _context = context;
+    }
 
     [HttpGet]
-    public ActionResult<List<SupportTicket>> GetAll()
+    public async Task<ActionResult<List<SupportTicket>>> GetAll()
     {
-        return Ok(Tickets);
+        var tickets = await _context.Tickets
+            .AsNoTracking()
+            .OrderByDescending(ticket => ticket.CreatedAt)
+            .ToListAsync();
+
+        return Ok(tickets);
     }
 
     [HttpGet("{id:int}")]
-    public ActionResult<SupportTicket> GetById(int id)
+    public async Task<ActionResult<SupportTicket>> GetById(int id)
     {
-        var ticket = Tickets.FirstOrDefault(ticket => ticket.Id == id);
+        var ticket = await _context.Tickets
+            .AsNoTracking()
+            .FirstOrDefaultAsync(ticket => ticket.Id == id);
 
         if (ticket is null)
         {
@@ -29,7 +43,8 @@ public class SupportTicketsController : ControllerBase
     }
 
     [HttpPost]
-    public ActionResult<SupportTicket> Create(CreateTicketRequest request)
+    public async Task<ActionResult<SupportTicket>> Create(
+        CreateTicketRequest request)
     {
         if (string.IsNullOrWhiteSpace(request.Title) ||
             string.IsNullOrWhiteSpace(request.Description))
@@ -39,14 +54,12 @@ public class SupportTicketsController : ControllerBase
 
         var ticket = new SupportTicket
         {
-            Id = Tickets.Count == 0
-                ? 1
-                : Tickets.Max(ticket => ticket.Id) + 1,
             Title = request.Title.Trim(),
             Description = request.Description.Trim()
         };
 
-        Tickets.Add(ticket);
+        _context.Tickets.Add(ticket);
+        await _context.SaveChangesAsync();
 
         return CreatedAtAction(
             nameof(GetById),
