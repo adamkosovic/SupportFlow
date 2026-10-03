@@ -2889,11 +2889,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/SupportFlow.Api.csproj",
+      "projectUniqueName": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/SupportFlow.Api.csproj",
       "projectName": "SupportFlow.Api",
-      "projectPath": "/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/SupportFlow.Api.csproj",
+      "projectPath": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/SupportFlow.Api.csproj",
       "packagesPath": "/Users/adamkosovic/.nuget/packages/",
-      "outputPath": "/Users/adamkosovic/Desktop/supportflow/backend/SupportFlow.Api/obj/",
+      "outputPath": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/adamkosovic/.nuget/NuGet/NuGet.Config"
