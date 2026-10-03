@@ -12,6 +12,13 @@ export class TicketService {
     return this.http.get<SupportTicket[]>('/api/tickets');
   }
 
+  updateStatus(id: number, status: string) {
+    return this.http.patch<SupportTicket>(
+      `/api/tickets/${id}/status`,
+      { status }
+    );
+  }
+
   createTicket(request: { title: string; description: string }) {
     return this.http.post<SupportTicket>('/api/tickets', request);
   }

@@ -41,8 +41,11 @@
       }
     </form>
   </section>
-
   <h2>Supportärenden</h2>
+
+  @if (statusError()) {
+    <p class="error" role="alert">{{ statusError() }}</p>
+  }
 
   @if (loading()) {
     <p>Laddar ärenden…</p>
@@ -52,8 +55,27 @@
     @for (ticket of tickets(); track ticket.id) {
       <article>
         <h2>#{{ ticket.id }} – {{ ticket.title }}</h2>
+
         <p>{{ ticket.description }}</p>
+
         <p><strong>Status:</strong> {{ ticket.status }}</p>
+
+        <div class="status-actions">
+          @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
+            <button
+              type="button"
+              [disabled]="updatingId() !== null || ticket.status === status"
+              (click)="updateStatus(ticket, status)"
+            >
+              {{ status }}
+            </button>
+          }
+        </div>
+
+        @if (updatingId() === ticket.id) {
+          <p role="status">Sparar status…</p>
+        }
+
         <small>
           Skapat: {{ ticket.createdAt | date:'yyyy-MM-dd HH:mm' }}
         </small>

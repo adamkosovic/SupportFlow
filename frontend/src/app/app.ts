@@ -21,6 +21,9 @@ export class App implements OnInit {
   readonly formError = signal('');
   readonly success = signal('');
 
+  readonly updatingId = signal<number | null>(null);
+  readonly statusError = signal('');
+
   title = '';
   description = '';
 
@@ -75,6 +78,31 @@ export class App implements OnInit {
           'Kunde inte skapa ärendet. Kontrollera att API:et körs.'
         );
         this.saving.set(false);
+      },
+    });
+  }
+  
+  updateStatus(ticket: SupportTicket, status: string): void {
+    if (this.updatingId() !== null || ticket.status === status) {
+      return;
+    }
+  
+    this.statusError.set('');
+    this.updatingId.set(ticket.id);
+  
+    this.ticketService.updateStatus(ticket.id, status).subscribe({
+      next: (updatedTicket) => {
+        this.tickets.update((tickets) =>
+          tickets.map((item) =>
+            item.id === updatedTicket.id ? updatedTicket : item
+          )
+        );
+  
+        this.updatingId.set(null);
+      },
+      error: () => {
+        this.statusError.set('Kunde inte ändra status. Försök igen.');
+        this.updatingId.set(null);
       },
     });
   }

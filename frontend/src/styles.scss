@@ -56,3 +56,11 @@ button:disabled {
 .success {
   color: #16703a;
 }
+
+
+.status-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
