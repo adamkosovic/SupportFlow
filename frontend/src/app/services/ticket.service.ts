@@ -11,4 +11,8 @@ export class TicketService {
   getTickets() {
     return this.http.get<SupportTicket[]>('/api/tickets');
   }
+
+  createTicket(request: { title: string; description: string }) {
+    return this.http.post<SupportTicket>('/api/tickets', request);
+  }
 }
