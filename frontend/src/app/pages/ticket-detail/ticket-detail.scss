@@ -173,3 +173,9 @@ dd {
 .error {
   color: #b42318;
 }
+
+.detail-main {
+  display: grid;
+  min-width: 0;
+  gap: 24px;
+}

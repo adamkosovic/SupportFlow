@@ -19,8 +19,14 @@
 
     <div class="detail-grid">
       <section class="detail-card">
-        <h2>Beskrivning</h2>
-        <p class="description">{{ currentTicket.description }}</p>
+        <div class="detail-main">
+          <section class="detail-card">
+            <h2>Beskrivning</h2>
+            <p class="description">{{ currentTicket.description }}</p>
+          </section>
+        
+          <app-ticket-comments [ticketId]="currentTicket.id" />
+        </div>
       </section>
 
       <aside class="detail-card" aria-label="Ärendeinformation">

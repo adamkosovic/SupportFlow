@@ -4,13 +4,13 @@ import { Component, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { catchError, of, switchMap } from 'rxjs';
-
+import { TicketComments } from '../../components/ticket-comments/ticket-comments';
 import { SupportTicket } from '../../models/support-ticket';
 import { TicketService } from '../../services/ticket.service';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [DatePipe, RouterLink],
+  imports: [DatePipe, RouterLink, TicketComments],
   templateUrl: './ticket-detail.html',
   styleUrl: './ticket-detail.scss'
 })

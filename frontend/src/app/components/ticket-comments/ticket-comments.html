@@ -1,0 +1,73 @@
+<section class="comments-card" aria-labelledby="comments-heading">
+  <div class="section-heading">
+    <h2 id="comments-heading">Kommentarer</h2>
+
+    @if (!loading() && !loadError()) {
+      <span class="comment-count">{{ comments().length }}</span>
+    }
+  </div>
+
+  @if (loading()) {
+    <p class="muted" role="status">Laddar kommentarer…</p>
+  } @else if (loadError()) {
+    <p class="error" role="alert">{{ loadError() }}</p>
+  } @else {
+    <div class="comment-list">
+      @for (comment of comments(); track comment.id) {
+        <article class="comment">
+          <div class="comment-heading">
+            <strong>Kommentar</strong>
+            <time [attr.datetime]="comment.createdAt">
+              {{ comment.createdAt | date:'yyyy-MM-dd HH:mm' }}
+            </time>
+          </div>
+
+          <p class="comment-text">{{ comment.text }}</p>
+        </article>
+      } @empty {
+        <div class="empty-state">
+          <strong>Inga kommentarer ännu</strong>
+          <p>Lägg till en uppdatering om ärendet nedan.</p>
+        </div>
+      }
+    </div>
+
+    <form #commentForm="ngForm" (ngSubmit)="submit(commentForm)">
+      <fieldset [disabled]="saving()">
+        <label for="comment-text">Lägg till en kommentar</label>
+
+        <textarea
+          id="comment-text"
+          name="text"
+          [(ngModel)]="text"
+          rows="4"
+          required
+          maxlength="2000"
+          aria-describedby="comment-help"
+          placeholder="Beskriv vad som har gjorts eller nästa steg…"
+        ></textarea>
+
+        <div class="form-footer">
+          <small id="comment-help">
+            {{ text.length }} / 2000 tecken
+          </small>
+
+          <button
+            type="submit"
+            [disabled]="commentForm.invalid || !text.trim() || saving()"
+          >
+            {{ saving() ? 'Sparar…' : 'Skicka kommentar' }}
+          </button>
+        </div>
+      </fieldset>
+
+      @if (formError()) {
+        <p class="error" role="alert">{{ formError() }}</p>
+      }
+
+      @if (success()) {
+        <p class="success" role="status">{{ success() }}</p>
+      }
+    </form>
+  }
+</section>
