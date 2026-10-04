@@ -21,6 +21,8 @@ export class TicketDetail {
   readonly ticket = signal<SupportTicket | null>(null);
   readonly loading = signal(true);
   readonly error = signal('');
+  readonly saving = signal(false);
+  readonly statusError = signal('');
 
   constructor() {
     this.route.paramMap.pipe(
@@ -52,6 +54,36 @@ export class TicketDetail {
     ).subscribe(ticket => {
       this.ticket.set(ticket);
       this.loading.set(false);
+    });
+  }
+
+  updateStatus(status: string): void {
+    const currentTicket = this.ticket();
+  
+    if (
+      !currentTicket ||
+      this.saving() ||
+      currentTicket.status === status
+    ) {
+      return;
+    }
+  
+    this.statusError.set('');
+    this.saving.set(true);
+  
+    this.ticketService.updateStatus(currentTicket.id, status).subscribe({
+      next: updatedTicket => {
+        // Uppdatera bara om samma ärende fortfarande visas.
+        if (this.ticket()?.id === updatedTicket.id) {
+          this.ticket.set(updatedTicket);
+        }
+  
+        this.saving.set(false);
+      },
+      error: () => {
+        this.statusError.set('Kunde inte ändra status. Försök igen.');
+        this.saving.set(false);
+      }
     });
   }
 }

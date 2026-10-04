@@ -123,3 +123,53 @@ dd {
     grid-template-columns: 1fr;
   }
 }
+
+.status-controls {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.status-controls h3 {
+  margin: 0 0 12px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.status-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.status-buttons button {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.status-buttons button:hover:not(:disabled) {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.status-buttons button.selected {
+  border-color: #2563eb;
+  background: #eff6ff;
+  color: #1d4ed8;
+  opacity: 1;
+}
+
+.status-controls p {
+  margin: 12px 0 0;
+  font-size: 13px;
+}
+
+.error {
+  color: #b42318;
+}

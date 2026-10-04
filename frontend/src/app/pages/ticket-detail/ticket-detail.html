@@ -47,6 +47,31 @@
           <dt>Ärendenummer</dt>
           <dd>#{{ currentTicket.id }}</dd>
         </dl>
+        <div class="status-controls">
+          <h3>Ändra status</h3>
+
+          <div class="status-buttons">
+            @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
+              <button
+                type="button"
+                [disabled]="saving() || currentTicket.status === status"
+                [class.selected]="currentTicket.status === status"
+                [attr.aria-pressed]="currentTicket.status === status"
+                (click)="updateStatus(status)"
+              >
+                {{ status }}
+              </button>
+            }
+          </div>
+
+          @if (saving()) {
+            <p role="status">Sparar status…</p>
+          }
+
+          @if (statusError()) {
+            <p class="error" role="alert">{{ statusError() }}</p>
+          }
+        </div>
       </aside>
     </div>
   }
