@@ -1,0 +1,44 @@
+<div class="app-shell">
+  <aside class="sidebar" aria-label="Sidopanel">
+    <a class="brand" href="/" aria-label="SupportFlow startsida">
+      <span class="brand-icon" aria-hidden="true">S</span>
+
+      <span>
+        <strong>SupportFlow</strong>
+        <small>IT-supportportal</small>
+      </span>
+    </a>
+
+    <div class="sidebar-section">
+      <p class="section-label">ARBETSYTA</p>
+
+      <nav aria-label="Huvudmeny">
+        <a class="nav-link active" href="/" aria-current="page">
+          <span class="nav-icon" aria-hidden="true">☷</span>
+          Ärenden
+        </a>
+      </nav>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="footer-dot" aria-hidden="true"></span>
+      <span>En plats för din IT-support</span>
+    </div>
+  </aside>
+
+  <div class="workspace">
+    <header class="topbar">
+      <div class="breadcrumb">
+        <span>Arbetsyta</span>
+        <span class="separator" aria-hidden="true">/</span>
+        <strong>Ärenden</strong>
+      </div>
+
+      <span class="workspace-label">Supportportal</span>
+    </header>
+
+    <div class="page-content">
+      <ng-content />
+    </div>
+  </div>
+</div>

@@ -1,21 +1,24 @@
 :host {
   display: block;
-  font-family: Arial, sans-serif;
-  color: #172033;
 }
 
 main {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 0 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
-article {
-  margin-top: 16px;
-  padding: 24px;
-  border: 1px solid #dce2eb;
-  border-radius: 12px;
-  background: #f8fafc;
+main > h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 750;
+  letter-spacing: -1px;
+}
+
+main > h1 + p {
+  margin: 0 0 32px;
+  color: #64748b;
 }
 
 h2 {
@@ -23,6 +26,6 @@ h2 {
   font-size: 20px;
 }
 
-small {
-  color: #526078;
+.error {
+  color: #b91c1c;
 }

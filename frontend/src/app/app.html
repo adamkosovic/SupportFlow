@@ -1,64 +1,66 @@
-<main>
-  <h1>SupportFlow</h1>
-  <p>Skapa och följ dina supportärenden.</p>
-  <section class="ticket-form">
-    <app-ticket-form
-      [saving]="saving()"
-      [error]="formError()"
-      [success]="success()"
-      (submitted)="createTicket($event)"
-    />
-  </section>
-  <h2>Supportärenden</h2>
-
-  <div class="ticket-filters">
-    <div>
-      <label for="search">Sök ärenden</label>
-      <input
-        id="search"
-        type="search"
-        placeholder="Sök i rubrik eller beskrivning"
-        [ngModel]="searchTerm()"
-        (ngModelChange)="searchTerm.set($event)"
+<app-layout>
+  <main>
+    <h1>SupportFlow</h1>
+    <p>Skapa och följ dina supportärenden.</p>
+    <section class="ticket-form">
+      <app-ticket-form
+        [saving]="saving()"
+        [error]="formError()"
+        [success]="success()"
+        (submitted)="createTicket($event)"
       />
+    </section>
+    <h2>Supportärenden</h2>
+  
+    <div class="ticket-filters">
+      <div>
+        <label for="search">Sök ärenden</label>
+        <input
+          id="search"
+          type="search"
+          placeholder="Sök i rubrik eller beskrivning"
+          [ngModel]="searchTerm()"
+          (ngModelChange)="searchTerm.set($event)"
+        />
+      </div>
+    
+      <div>
+        <label for="status-filter">Filtrera på status</label>
+        <select
+          id="status-filter"
+          [ngModel]="statusFilter()"
+          (ngModelChange)="statusFilter.set($event)"
+        >
+          <option value="Alla">Alla</option>
+          <option value="Nytt">Nytt</option>
+          <option value="Pågår">Pågår</option>
+          <option value="Löst">Löst</option>
+        </select>
+      </div>
     </div>
   
-    <div>
-      <label for="status-filter">Filtrera på status</label>
-      <select
-        id="status-filter"
-        [ngModel]="statusFilter()"
-        (ngModelChange)="statusFilter.set($event)"
-      >
-        <option value="Alla">Alla</option>
-        <option value="Nytt">Nytt</option>
-        <option value="Pågår">Pågår</option>
-        <option value="Löst">Löst</option>
-      </select>
-    </div>
-  </div>
-
-  @if (statusError()) {
-    <p class="error" role="alert">{{ statusError() }}</p>
-  }
-
-  @if (loading()) {
-    <p>Laddar ärenden…</p>
-  } @else if (error()) {
-    <p class="error" role="alert">{{ error() }}</p>
-  } @else {
-    <p role="status">
-      Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
-    </p>
-    @for (ticket of filteredTickets(); track ticket.id) {
-      <app-ticket-card
-        [ticket]="ticket"
-        [updating]="updatingId() === ticket.id"
-        [disabled]="updatingId() !== null"
-        (statusChange)="updateStatus(ticket, $event)"
-      />
-    } @empty {
-      <p>Inga ärenden matchar din sökning eller ditt filter.</p>
+    @if (statusError()) {
+      <p class="error" role="alert">{{ statusError() }}</p>
     }
-  }
-</main>
+  
+    @if (loading()) {
+      <p>Laddar ärenden…</p>
+    } @else if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    } @else {
+      <p role="status">
+        Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
+      </p>
+      @for (ticket of filteredTickets(); track ticket.id) {
+        <app-ticket-card
+          [ticket]="ticket"
+          [updating]="updatingId() === ticket.id"
+          [disabled]="updatingId() !== null"
+          (statusChange)="updateStatus(ticket, $event)"
+        />
+      } @empty {
+        <p>Inga ärenden matchar din sökning eller ditt filter.</p>
+      }
+    }
+  </main>
+</app-layout>

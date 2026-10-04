@@ -1,16 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+/* Grundstil för hela appen */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #1e293b;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Formulär */
+
 .ticket-form {
   margin: 24px 0 32px;
   padding: 24px;
   border: 1px solid #dce2eb;
   border-radius: 12px;
+  background: white;
 }
 
 fieldset {
+  min-width: 0;
   margin: 0;
   padding: 0;
   border: 0;
-  min-width: 0;
 }
 
 label {
@@ -20,19 +46,26 @@ label {
 }
 
 input,
-textarea {
-  box-sizing: border-box;
+textarea,
+select {
   width: 100%;
-  margin-bottom: 20px;
   padding: 12px;
   border: 1px solid #aab5c5;
   border-radius: 8px;
-  font: inherit;
+  background: white;
+  color: #1e293b;
+}
+
+input,
+textarea {
+  margin-bottom: 20px;
 }
 
 textarea {
   resize: vertical;
 }
+
+/* Knappar */
 
 button {
   padding: 12px 20px;
@@ -40,14 +73,29 @@ button {
   border-radius: 8px;
   background: #2457d6;
   color: white;
-  font: inherit;
   cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: #1d46ad;
 }
 
 button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
 }
+
+/* Tangentbordsnavigering */
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* Meddelanden */
 
 .error {
   color: #b42318;
@@ -57,6 +105,7 @@ button:disabled {
   color: #16703a;
 }
 
+/* Statusknappar */
 
 .status-actions {
   display: flex;
@@ -65,6 +114,8 @@ button:disabled {
   margin-bottom: 16px;
 }
 
+/* Sökning och filtrering */
+
 .ticket-filters {
   display: grid;
   grid-template-columns: 2fr 1fr;
@@ -72,15 +123,7 @@ button:disabled {
   margin-bottom: 16px;
 }
 
-select {
-  box-sizing: border-box;
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #aab5c5;
-  border-radius: 8px;
-  background: white;
-  font: inherit;
-}
+/* Mobilanpassning */
 
 @media (max-width: 600px) {
   .ticket-filters {

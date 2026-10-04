@@ -4,10 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { TicketService } from './services/ticket.service';
 import { SupportTicket } from './models/support-ticket';
 import { TicketForm } from './components/ticket-form/ticket-form';
+import { AppLayout } from './components/app-layout/app-layout';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, TicketCard, TicketForm],
+  imports: [FormsModule, TicketCard, TicketForm, AppLayout],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
