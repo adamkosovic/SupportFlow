@@ -11,4 +11,5 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<SupportTicket> Tickets => Set<SupportTicket>();
+    public DbSet<TicketComment> Comments => Set<TicketComment>();
 }
