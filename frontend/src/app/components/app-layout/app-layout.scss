@@ -207,3 +207,17 @@ a:focus-visible {
     padding: 24px 16px;
   }
 }
+
+.breadcrumb {
+  flex-wrap: wrap;
+}
+
+.breadcrumb a {
+  color: #64748b;
+  text-decoration: none;
+}
+
+.breadcrumb a:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}

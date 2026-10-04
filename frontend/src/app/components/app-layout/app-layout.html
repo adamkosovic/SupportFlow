@@ -28,11 +28,18 @@
 
   <div class="workspace">
     <header class="topbar">
-      <div class="breadcrumb">
+      <nav class="breadcrumb" aria-label="Brödsmulor">
         <span>Arbetsyta</span>
         <span class="separator" aria-hidden="true">/</span>
-        <strong>Ärenden</strong>
-      </div>
+
+        @if (ticketId(); as id) {
+          <a routerLink="/tickets">Ärenden</a>
+          <span class="separator" aria-hidden="true">/</span>
+          <strong aria-current="page">#{{ id }}</strong>
+        } @else {
+          <strong aria-current="page">Ärenden</strong>
+        }
+      </nav>
 
       <span class="workspace-label">Supportportal</span>
     </header>

@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { filter, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
@@ -7,4 +9,22 @@ import { RouterLink } from '@angular/router';
   templateUrl: './app-layout.html',
   styleUrl: './app-layout.scss'
 })
-export class AppLayout {}
+export class AppLayout {
+  private readonly router = inject(Router);
+
+  private readonly currentUrl = toSignal(
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd),
+      map(() => this.router.url),
+      startWith(this.router.url)
+    ),
+    { initialValue: this.router.url }
+  );
+
+  readonly ticketId = computed(() => {
+    const path = this.currentUrl().split(/[?#]/)[0];
+    const match = path.match(/^\/tickets\/(\d+)\/?$/);
+
+    return match?.[1] ?? null;
+  });
+}
