@@ -154,3 +154,22 @@ tbody tr:hover {
   clip-path: inset(50%);
   white-space: nowrap;
 }
+
+.ticket-link {
+  display: block;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.ticket-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.ticket-link:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}

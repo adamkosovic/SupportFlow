@@ -18,7 +18,9 @@
         <tr [attr.aria-busy]="updatingId() === ticket.id">
           <td class="ticket-info">
             <span class="ticket-id">#{{ ticket.id }}</span>
-            <strong>{{ ticket.title }}</strong>
+            <a class="ticket-link" [routerLink]="['/tickets', ticket.id]">
+              {{ ticket.title }}
+            </a>
             <p class="ticket-description">{{ ticket.description }}</p>
           </td>
 

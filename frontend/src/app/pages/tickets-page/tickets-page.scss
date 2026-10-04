@@ -1,0 +1,27 @@
+main {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+main > h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: clamp(28px, 4vw, 36px);
+  font-weight: 750;
+  letter-spacing: -1px;
+}
+
+main > h1 + p {
+  margin: 0 0 32px;
+  color: #64748b;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+.error {
+  color: #b91c1c;
+}

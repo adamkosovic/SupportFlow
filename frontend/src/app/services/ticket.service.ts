@@ -12,6 +12,10 @@ export class TicketService {
     return this.http.get<SupportTicket[]>('/api/tickets');
   }
 
+  getTicket(id: number) {
+    return this.http.get<SupportTicket>(`/api/tickets/${id}`);
+  }
+
   updateStatus(id: number, status: string) {
     return this.http.patch<SupportTicket>(
       `/api/tickets/${id}/status`,

@@ -1,10 +1,11 @@
 import { DatePipe } from '@angular/common';
 import { Component, input, output } from '@angular/core';
 import { SupportTicket } from '../../models/support-ticket';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-ticket-table',
-  imports: [DatePipe],
+  imports: [DatePipe, RouterLink],
   templateUrl: './ticket-table.html',
   styleUrl: './ticket-table.scss'
 })
