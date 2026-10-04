@@ -1,12 +1,13 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { TicketCard } from './components/ticket-card/ticket-card';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { TicketService } from './services/ticket.service';
 import { SupportTicket } from './models/support-ticket';
+import { TicketForm } from './components/ticket-form/ticket-form';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, TicketCard],
+  imports: [FormsModule, TicketCard, TicketForm],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
@@ -23,9 +24,6 @@ export class App implements OnInit {
 
   readonly updatingId = signal<number | null>(null);
   readonly statusError = signal('');
-
-  title = '';
-  description = '';
 
   ngOnInit(): void {
     this.ticketService.getTickets().subscribe({
@@ -66,29 +64,18 @@ export class App implements OnInit {
     });
   });
 
-  createTicket(form: NgForm): void {
+  createTicket(request: { title: string; description: string }): void {
     if (this.saving()) {
       return;
     }
-
+  
     this.formError.set('');
     this.success.set('');
-
-    const title = this.title.trim();
-    const description = this.description.trim();
-
-    if (!title || !description) {
-      this.formError.set('Fyll i både rubrik och beskrivning.');
-      return;
-    }
-
     this.saving.set(true);
-
-    this.ticketService.createTicket({ title, description }).subscribe({
+  
+    this.ticketService.createTicket(request).subscribe({
       next: (ticket) => {
         this.tickets.update((tickets) => [ticket, ...tickets]);
-        form.resetForm({ title: '', description: '' });
-
         this.success.set('Ärendet har skapats.');
         this.saving.set(false);
       },

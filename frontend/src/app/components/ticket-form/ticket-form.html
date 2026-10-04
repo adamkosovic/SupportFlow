@@ -1,0 +1,41 @@
+<section>
+  <h2>Skapa ett ärende</h2>
+
+  <form #ticketForm="ngForm" (ngSubmit)="submit()">
+    <fieldset [disabled]="saving()">
+      <label for="title">Rubrik</label>
+      <input
+        id="title"
+        name="title"
+        type="text"
+        [(ngModel)]="title"
+        required
+        placeholder="Exempel: Problem med skrivaren"
+      />
+
+      <label for="description">Beskrivning</label>
+      <textarea
+        id="description"
+        name="description"
+        [(ngModel)]="description"
+        required
+        rows="4"
+        placeholder="Beskriv problemet"
+      ></textarea>
+
+      <button type="submit" [disabled]="ticketForm.invalid || saving()">
+        {{ saving() ? 'Sparar…' : 'Skapa ärende' }}
+      </button>
+    </fieldset>
+
+    @if (validationError || error()) {
+      <p class="error" role="alert">
+        {{ validationError || error() }}
+      </p>
+    }
+
+    @if (success()) {
+      <p class="success" role="status">{{ success() }}</p>
+    }
+  </form>
+</section>
