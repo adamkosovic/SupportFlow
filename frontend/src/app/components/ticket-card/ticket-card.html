@@ -1,0 +1,27 @@
+<article>
+  <h2>#{{ ticket().id }} – {{ ticket().title }}</h2>
+
+  <p>{{ ticket().description }}</p>
+
+  <p><strong>Status:</strong> {{ ticket().status }}</p>
+
+  <div class="status-actions">
+    @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
+      <button
+        type="button"
+        [disabled]="disabled() || ticket().status === status"
+        (click)="statusChange.emit(status)"
+      >
+        {{ status }}
+      </button>
+    }
+  </div>
+
+  @if (updating()) {
+    <p role="status">Sparar status…</p>
+  }
+
+  <small>
+    Skapat: {{ ticket().createdAt | date:'yyyy-MM-dd HH:mm' }}
+  </small>
+</article>

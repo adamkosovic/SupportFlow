@@ -82,34 +82,13 @@
     <p role="status">
       Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
     </p>
-    @for (ticket of  filteredTickets(); track ticket.id) {
-      <article>
-        <h2>#{{ ticket.id }} – {{ ticket.title }}</h2>
-
-        <p>{{ ticket.description }}</p>
-
-        <p><strong>Status:</strong> {{ ticket.status }}</p>
-
-        <div class="status-actions">
-          @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
-            <button
-              type="button"
-              [disabled]="updatingId() !== null || ticket.status === status"
-              (click)="updateStatus(ticket, status)"
-            >
-              {{ status }}
-            </button>
-          }
-        </div>
-
-        @if (updatingId() === ticket.id) {
-          <p role="status">Sparar status…</p>
-        }
-
-        <small>
-          Skapat: {{ ticket.createdAt | date:'yyyy-MM-dd HH:mm' }}
-        </small>
-      </article>
+    @for (ticket of filteredTickets(); track ticket.id) {
+      <app-ticket-card
+        [ticket]="ticket"
+        [updating]="updatingId() === ticket.id"
+        [disabled]="updatingId() !== null"
+        (statusChange)="updateStatus(ticket, $event)"
+      />
     } @empty {
       <p>Inga ärenden matchar din sökning eller ditt filter.</p>
     }

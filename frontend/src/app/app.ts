@@ -1,12 +1,12 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { TicketCard } from './components/ticket-card/ticket-card';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TicketService } from './services/ticket.service';
 import { SupportTicket } from './models/support-ticket';
 
 @Component({
   selector: 'app-root',
-  imports: [DatePipe, FormsModule],
+  imports: [FormsModule, TicketCard],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })
