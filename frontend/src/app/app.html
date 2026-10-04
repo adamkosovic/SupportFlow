@@ -43,6 +43,33 @@
   </section>
   <h2>Supportärenden</h2>
 
+  <div class="ticket-filters">
+    <div>
+      <label for="search">Sök ärenden</label>
+      <input
+        id="search"
+        type="search"
+        placeholder="Sök i rubrik eller beskrivning"
+        [ngModel]="searchTerm()"
+        (ngModelChange)="searchTerm.set($event)"
+      />
+    </div>
+  
+    <div>
+      <label for="status-filter">Filtrera på status</label>
+      <select
+        id="status-filter"
+        [ngModel]="statusFilter()"
+        (ngModelChange)="statusFilter.set($event)"
+      >
+        <option value="Alla">Alla</option>
+        <option value="Nytt">Nytt</option>
+        <option value="Pågår">Pågår</option>
+        <option value="Löst">Löst</option>
+      </select>
+    </div>
+  </div>
+
   @if (statusError()) {
     <p class="error" role="alert">{{ statusError() }}</p>
   }
@@ -52,7 +79,10 @@
   } @else if (error()) {
     <p class="error" role="alert">{{ error() }}</p>
   } @else {
-    @for (ticket of tickets(); track ticket.id) {
+    <p role="status">
+      Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
+    </p>
+    @for (ticket of  filteredTickets(); track ticket.id) {
       <article>
         <h2>#{{ ticket.id }} – {{ ticket.title }}</h2>
 
@@ -81,7 +111,7 @@
         </small>
       </article>
     } @empty {
-      <p>Det finns inga ärenden ännu.</p>
+      <p>Inga ärenden matchar din sökning eller ditt filter.</p>
     }
   }
 </main>

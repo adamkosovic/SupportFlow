@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { TicketService } from './services/ticket.service';
@@ -46,6 +46,25 @@ export class App implements OnInit {
       },
     });
   }
+
+  readonly searchTerm = signal('');
+  readonly statusFilter = signal('Alla');
+
+  readonly filteredTickets = computed(() => {
+    const search = this.searchTerm().trim().toLocaleLowerCase('sv');
+    const status = this.statusFilter();
+
+    return this.tickets().filter((ticket) => {
+      const matchesSearch =
+        ticket.title.toLocaleLowerCase('sv').includes(search) ||
+        ticket.description.toLocaleLowerCase('sv').includes(search);
+
+      const matchesStatus =
+        status === 'Alla' || ticket.status === status;
+
+      return matchesSearch && matchesStatus;
+    });
+  });
 
   createTicket(form: NgForm): void {
     if (this.saving()) {

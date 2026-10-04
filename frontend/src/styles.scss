@@ -64,3 +64,26 @@ button:disabled {
   gap: 8px;
   margin-bottom: 16px;
 }
+
+.ticket-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+select {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #aab5c5;
+  border-radius: 8px;
+  background: white;
+  font: inherit;
+}
+
+@media (max-width: 600px) {
+  .ticket-filters {
+    grid-template-columns: 1fr;
+  }
+}
