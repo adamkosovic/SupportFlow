@@ -1,0 +1,69 @@
+<div class="table-container">
+  <table>
+    <caption class="visually-hidden">
+      Supportärenden med status, skapandedatum och statusändring
+    </caption>
+
+    <thead>
+      <tr>
+        <th scope="col">Ärende</th>
+        <th scope="col">Status</th>
+        <th scope="col">Skapat</th>
+        <th scope="col">Ändra status</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      @for (ticket of tickets(); track ticket.id) {
+        <tr [attr.aria-busy]="updatingId() === ticket.id">
+          <td class="ticket-info">
+            <span class="ticket-id">#{{ ticket.id }}</span>
+            <strong>{{ ticket.title }}</strong>
+            <p class="ticket-description">{{ ticket.description }}</p>
+          </td>
+
+          <td>
+            <span
+              class="status-badge"
+              [class.status-new]="ticket.status === 'Nytt'"
+              [class.status-ongoing]="ticket.status === 'Pågår'"
+              [class.status-resolved]="ticket.status === 'Löst'"
+            >
+              <span class="status-dot" aria-hidden="true"></span>
+              {{ ticket.status }}
+            </span>
+          </td>
+
+          <td class="date-cell">
+            {{ ticket.createdAt | date:'yyyy-MM-dd' }}
+            <small>{{ ticket.createdAt | date:'HH:mm' }}</small>
+          </td>
+
+          <td class="action-cell">
+            <select
+              [value]="ticket.status"
+              [disabled]="updatingId() !== null"
+              [attr.aria-label]="'Ändra status för ärende ' + ticket.id"
+              (change)="changeStatus(ticket, $event)"
+            >
+              <option value="Nytt">Nytt</option>
+              <option value="Pågår">Pågår</option>
+              <option value="Löst">Löst</option>
+            </select>
+
+            @if (updatingId() === ticket.id) {
+              <small role="status">Sparar…</small>
+            }
+          </td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="4" class="empty-state">
+            <strong>Inga ärenden att visa</strong>
+            <p>Skapa ett ärende eller ändra dina sökfilter.</p>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

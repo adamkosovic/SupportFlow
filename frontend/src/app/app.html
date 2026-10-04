@@ -54,16 +54,11 @@
       <p role="status">
         Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
       </p>
-      @for (ticket of filteredTickets(); track ticket.id) {
-        <app-ticket-card
-          [ticket]="ticket"
-          [updating]="updatingId() === ticket.id"
-          [disabled]="updatingId() !== null"
-          (statusChange)="updateStatus(ticket, $event)"
-        />
-      } @empty {
-        <p>Inga ärenden matchar din sökning eller ditt filter.</p>
-      }
+      <app-ticket-table
+        [tickets]="filteredTickets()"
+        [updatingId]="updatingId()"
+        (statusChange)="updateStatus($event.ticket, $event.status)"
+      />
     }
   </main>
 </app-layout>

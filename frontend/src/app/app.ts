@@ -1,20 +1,20 @@
 import { Component, inject, OnInit, signal, computed } from '@angular/core';
-import { TicketCard } from './components/ticket-card/ticket-card';
 import { FormsModule } from '@angular/forms';
 import { TicketService } from './services/ticket.service';
 import { SupportTicket } from './models/support-ticket';
 import { TicketForm } from './components/ticket-form/ticket-form';
 import { AppLayout } from './components/app-layout/app-layout';
 import { TicketStats } from './components/ticket-stats/ticket-stats';
+import { TicketTable } from './components/ticket-table/ticket-table';
 
 @Component({
   selector: 'app-root',
   imports: [
     FormsModule,
-    TicketCard,
     TicketForm,
     AppLayout,
-    TicketStats
+    TicketStats,
+    TicketTable
   ],
   templateUrl: './app.html',
   styleUrl: './app.scss',
