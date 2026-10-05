@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
 using SupportFlow.Api.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SupportFlow.Api.Controllers;
 
+[Authorize]
 [ApiController]
 [Route("api/tickets/{ticketId:int}/comments")]
 public class TicketCommentsController : ControllerBase

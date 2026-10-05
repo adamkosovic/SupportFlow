@@ -1,7 +1,8 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Identity;
-using SupportFlow.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
+using SupportFlow.Api.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,21 @@ builder.Services
     })
     .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Events.OnRedirectToLogin = context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+        return Task.CompletedTask;
+    };
+
+    options.Events.OnRedirectToAccessDenied = context =>
+    {
+        context.Response.StatusCode = StatusCodes.Status403Forbidden;
+        return Task.CompletedTask;
+    };
+});
 
 builder.Services.AddAuthorization();
 
@@ -56,7 +72,7 @@ app.MapGroup("/api/auth")
     .MapIdentityApi<ApplicationUser>();
 
 app.MapGet("/api/auth/me", async (
-    System.Security.Claims.ClaimsPrincipal principal,
+    ClaimsPrincipal principal,
     UserManager<ApplicationUser> userManager) =>
 {
     var user = await userManager.GetUserAsync(principal);
