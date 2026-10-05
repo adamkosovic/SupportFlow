@@ -3,4 +3,5 @@ export interface TicketComment {
   text: string;
   createdAt: string;
   supportTicketId: number;
+  authorEmail: string | null;
 }

@@ -135,3 +135,8 @@ button {
     padding: 20px;
   }
 }
+
+.comment-heading strong {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}

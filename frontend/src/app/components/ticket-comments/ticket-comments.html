@@ -16,7 +16,7 @@
       @for (comment of comments(); track comment.id) {
         <article class="comment">
           <div class="comment-heading">
-            <strong>Kommentar</strong>
+            <strong>{{ comment.authorEmail || 'Okänd användare' }}</strong>
             <time [attr.datetime]="comment.createdAt">
               {{ comment.createdAt | date:'yyyy-MM-dd HH:mm' }}
             </time>

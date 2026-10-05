@@ -60,7 +60,10 @@ public class TicketCommentsController : ControllerBase
                 Id = comment.Id,
                 Text = comment.Text,
                 CreatedAt = comment.CreatedAt,
-                SupportTicketId = comment.SupportTicketId
+                SupportTicketId = comment.SupportTicketId,
+                AuthorEmail = comment.CreatedByUser != null
+                    ? comment.CreatedByUser.Email
+                    : null
             })
             .ToListAsync(cancellationToken);
 
@@ -93,10 +96,22 @@ public class TicketCommentsController : ControllerBase
             });
         }
 
+        var author = await _context.Users
+            .AsNoTracking()
+            .FirstOrDefaultAsync(
+                user => user.Id == userId,
+                cancellationToken);
+
+        if (author is null)
+        {
+            return Unauthorized();
+        }
+
         var comment = new TicketComment
         {
             Text = request.Text.Trim(),
-            SupportTicketId = ticketId
+            SupportTicketId = ticketId,
+            CreatedByUserId = userId
         };
 
         _context.Comments.Add(comment);
@@ -107,7 +122,8 @@ public class TicketCommentsController : ControllerBase
             Id = comment.Id,
             Text = comment.Text,
             CreatedAt = comment.CreatedAt,
-            SupportTicketId = comment.SupportTicketId
+            SupportTicketId = comment.SupportTicketId,
+            AuthorEmail = author.Email
         };
 
         return StatusCode(StatusCodes.Status201Created, response);
@@ -130,4 +146,6 @@ public class TicketCommentResponse
     public DateTime CreatedAt { get; set; }
 
     public int SupportTicketId { get; set; }
+
+    public string? AuthorEmail { get; set; }
 }

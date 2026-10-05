@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SupportFlow.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9e55c8752f2650de134f15e12560a59c7e5c49c0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d4820de296881d786651a2877742925ae6a56a26")]
 [assembly: System.Reflection.AssemblyProductAttribute("SupportFlow.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SupportFlow.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
