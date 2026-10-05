@@ -1,0 +1,63 @@
+:host {
+  display: block;
+}
+
+.login-page {
+  display: grid;
+  place-items: center;
+  min-height: 65vh;
+  padding: 24px 0;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 36px;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 8px 24px rgb(15 23 42 / 5%);
+}
+
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 24px;
+  border-radius: 14px;
+  background: #2563eb;
+  color: white;
+  font-size: 26px;
+  font-weight: 800;
+}
+
+h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 28px;
+  letter-spacing: -0.7px;
+}
+
+.subtitle {
+  margin: 8px 0 28px;
+  color: #64748b;
+}
+
+button {
+  width: 100%;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
+.error {
+  margin-bottom: 0;
+  color: #b42318;
+  font-size: 14px;
+}
+
+@media (max-width: 480px) {
+  .login-card {
+    padding: 24px;
+  }
+}

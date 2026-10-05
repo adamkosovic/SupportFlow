@@ -1,0 +1,46 @@
+<main class="login-page">
+  <section class="login-card" aria-labelledby="login-heading">
+    <span class="brand-mark" aria-hidden="true">S</span>
+
+    <h1 id="login-heading">Logga in</h1>
+    <p class="subtitle">Välkommen till SupportFlow.</p>
+
+    <form #loginForm="ngForm" (ngSubmit)="submit()">
+      <fieldset [disabled]="saving()">
+        <label for="login-email">E-post</label>
+
+        <input
+          id="login-email"
+          name="email"
+          type="email"
+          [(ngModel)]="email"
+          autocomplete="username"
+          required
+          email
+        />
+
+        <label for="login-password">Lösenord</label>
+
+        <input
+          id="login-password"
+          name="password"
+          type="password"
+          [(ngModel)]="password"
+          autocomplete="current-password"
+          required
+        />
+
+        <button
+          type="submit"
+          [disabled]="loginForm.invalid || saving()"
+        >
+          {{ saving() ? 'Loggar in…' : 'Logga in' }}
+        </button>
+      </fieldset>
+
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+    </form>
+  </section>
+</main>
