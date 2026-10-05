@@ -8,10 +8,11 @@ import { TicketComments } from '../../components/ticket-comments/ticket-comments
 import { SupportTicket } from '../../models/support-ticket';
 import { TicketService } from '../../services/ticket.service';
 import { AuthService } from '../../services/auth.service';
+import { TicketAssignment } from '../../components/ticket-assignment/ticket-assignment';
 
 @Component({
   selector: 'app-ticket-detail',
-  imports: [DatePipe, RouterLink, TicketComments],
+  imports: [DatePipe, RouterLink, TicketComments, TicketAssignment],
   templateUrl: './ticket-detail.html',
   styleUrl: './ticket-detail.scss'
 })

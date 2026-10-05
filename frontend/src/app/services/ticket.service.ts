@@ -2,6 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SupportTicket } from '../models/support-ticket';
 import { TicketComment } from '../models/ticket-comment';
+import { TicketAssignment } from '../models/ticket-assignment';
 
 @Injectable({
   providedIn: 'root',
@@ -49,6 +50,25 @@ export class TicketService {
     return this.http.patch<SupportTicket>(
       `/api/tickets/${id}/priority`,
       { priority }
+    );
+  }
+
+  getAssignment(ticketId: number) {
+    return this.http.get<TicketAssignment>(
+      `/api/tickets/${ticketId}/assignment`
+    );
+  }
+  
+  assignToMe(ticketId: number) {
+    return this.http.put<void>(
+      `/api/tickets/${ticketId}/assignment/me`,
+      {}
+    );
+  }
+  
+  releaseAssignment(ticketId: number) {
+    return this.http.delete<void>(
+      `/api/tickets/${ticketId}/assignment/me`
     );
   }
 }

@@ -1,0 +1,40 @@
+<section aria-labelledby="assignment-heading">
+  <h3 id="assignment-heading">Ansvarig handläggare</h3>
+
+  @if (loading()) {
+    <p class="muted" role="status">Laddar handläggare…</p>
+  } @else if (assignment(); as currentAssignment) {
+    <p class="assignee">
+      {{ currentAssignment.email || 'Ingen tilldelad' }}
+    </p>
+
+    @if (authService.isSupport()) {
+      @if (currentAssignment.userId === null) {
+        <button
+          type="button"
+          [disabled]="saving()"
+          (click)="changeAssignment(false)"
+        >
+          {{ saving() ? 'Sparar…' : 'Tilldela mig' }}
+        </button>
+      } @else if (currentAssignment.userId === authService.user()?.id) {
+        <p class="muted">Du ansvarar för detta ärende.</p>
+
+        <button
+          class="release-button"
+          type="button"
+          [disabled]="saving()"
+          (click)="changeAssignment(true)"
+        >
+          {{ saving() ? 'Sparar…' : 'Lämna ärendet' }}
+        </button>
+      } @else {
+        <p class="muted">Ärendet hanteras av en annan supportperson.</p>
+      }
+    }
+  }
+
+  @if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  }
+</section>

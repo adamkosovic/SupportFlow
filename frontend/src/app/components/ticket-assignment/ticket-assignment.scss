@@ -1,0 +1,46 @@
+:host {
+  display: block;
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid #e2e8f0;
+}
+
+h3 {
+  margin: 0 0 12px;
+  color: #334155;
+  font-size: 14px;
+}
+
+.assignee {
+  margin: 0 0 12px;
+  color: #0f172a;
+  font-size: 14px;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.muted {
+  color: #64748b;
+  font-size: 12px;
+}
+
+button {
+  padding: 9px 14px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.release-button {
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #475569;
+}
+
+.release-button:hover:not(:disabled) {
+  background: #f1f5f9;
+}
+
+.error {
+  color: #b42318;
+  font-size: 13px;
+}

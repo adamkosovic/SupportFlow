@@ -54,6 +54,7 @@
           <dt>Ärendenummer</dt>
           <dd>#{{ currentTicket.id }}</dd>
         </dl>
+        <app-ticket-assignment [ticketId]="currentTicket.id" />
         @if (authService.isSupport()) {
           <div class="status-controls">
             <h3>Ändra status</h3>
