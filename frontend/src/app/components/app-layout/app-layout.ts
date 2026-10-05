@@ -1,11 +1,16 @@
 import { Component, computed, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import {
+  NavigationEnd,
+  Router,
+  RouterLink,
+  RouterLinkActive
+} from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
 
 @Component({
   selector: 'app-layout',
-  imports: [RouterLink],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './app-layout.html',
   styleUrl: './app-layout.scss'
 })
@@ -20,6 +25,12 @@ export class AppLayout {
     ),
     { initialValue: this.router.url }
   );
+
+  readonly isDashboard = computed(() => {
+    const path = this.currentUrl().split(/[?#]/)[0];
+
+    return path === '/dashboard';
+  });
 
   readonly ticketId = computed(() => {
     const path = this.currentUrl().split(/[?#]/)[0];

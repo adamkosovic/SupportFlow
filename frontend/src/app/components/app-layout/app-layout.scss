@@ -221,3 +221,8 @@ a:focus-visible {
   color: #2563eb;
   text-decoration: underline;
 }
+
+.sidebar-section nav {
+  display: grid;
+  gap: 6px;
+}

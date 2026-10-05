@@ -1,12 +1,18 @@
 import { Routes } from '@angular/router';
+import { Dashboard } from './pages/dashboard/dashboard';
 import { TicketsPage } from './pages/tickets-page/tickets-page';
 import { TicketDetail } from './pages/ticket-detail/ticket-detail';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'tickets',
+    redirectTo: 'dashboard',
     pathMatch: 'full'
+  },
+  {
+    path: 'dashboard',
+    component: Dashboard,
+    title: 'Översikt | SupportFlow'
   },
   {
     path: 'tickets',
@@ -20,6 +26,6 @@ export const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'tickets'
+    redirectTo: 'dashboard'
   }
 ];

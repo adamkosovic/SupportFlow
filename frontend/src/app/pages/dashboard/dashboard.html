@@ -1,0 +1,63 @@
+<main>
+  <header class="page-heading">
+    <div>
+      <h1>Översikt</h1>
+      <p>En samlad bild av organisationens IT-supportärenden.</p>
+    </div>
+
+    <a class="primary-link" routerLink="/tickets">
+      Hantera ärenden
+    </a>
+  </header>
+
+  @if (loading()) {
+    <p role="status">Laddar översikten…</p>
+  } @else if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  } @else {
+    <app-ticket-stats [tickets]="tickets()" />
+
+    <section class="attention-card" aria-labelledby="attention-heading">
+      <div class="section-heading">
+        <div>
+          <h2 id="attention-heading">Behöver uppmärksamhet</h2>
+          <p>
+            {{ urgentCount() }} olösta ärenden med hög prioritet.
+            Visar högst fem, med äldsta först.
+          </p>
+        </div>
+      </div>
+
+      <div class="ticket-list">
+        @for (ticket of urgentTickets(); track ticket.id) {
+          <a
+            class="ticket-row"
+            [routerLink]="['/tickets', ticket.id]"
+          >
+            <div class="ticket-info">
+              <span class="ticket-id">#{{ ticket.id }}</span>
+              <strong>{{ ticket.title }}</strong>
+              <small>
+                Skapat {{ ticket.createdAt | date:'yyyy-MM-dd HH:mm' }}
+              </small>
+            </div>
+
+            <div class="ticket-labels">
+              <span class="priority-badge">Hög</span>
+              <span class="status-label">{{ ticket.status }}</span>
+            </div>
+          </a>
+        } @empty {
+          <div class="empty-state">
+            <strong>Inga olösta ärenden med hög prioritet</strong>
+            <p>Alla ärenden finns på sidan Ärenden.</p>
+          </div>
+        }
+      </div>
+
+      <a class="all-tickets-link" routerLink="/tickets">
+        Visa alla ärenden →
+      </a>
+    </section>
+  }
+</main>

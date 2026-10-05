@@ -13,7 +13,22 @@
       <p class="section-label">ARBETSYTA</p>
 
       <nav aria-label="Huvudmeny">
-        <a class="nav-link active" routerLink="/tickets">
+        <a
+          class="nav-link"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          Översikt
+        </a>
+      
+        <a
+          class="nav-link"
+          routerLink="/tickets"
+          routerLinkActive="active"
+          ariaCurrentWhenActive="page"
+        >
           <span class="nav-icon" aria-hidden="true">☷</span>
           Ärenden
         </a>
@@ -31,8 +46,10 @@
       <nav class="breadcrumb" aria-label="Brödsmulor">
         <span>Arbetsyta</span>
         <span class="separator" aria-hidden="true">/</span>
-
-        @if (ticketId(); as id) {
+      
+        @if (isDashboard()) {
+          <strong aria-current="page">Översikt</strong>
+        } @else if (ticketId(); as id) {
           <a routerLink="/tickets">Ärenden</a>
           <span class="separator" aria-hidden="true">/</span>
           <strong aria-current="page">#{{ id }}</strong>
