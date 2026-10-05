@@ -13,4 +13,6 @@ public class SupportTicket
     public string Priority { get; set; } = "Normal";
 
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+
+    public string? CreatedByUserId { get; set; }
 }

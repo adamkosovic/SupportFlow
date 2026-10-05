@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
 using SupportFlow.Api.Models;
 using Microsoft.AspNetCore.Authorization;
+using System.Security.Claims;
 
 namespace SupportFlow.Api.Controllers;
 
@@ -64,11 +65,19 @@ public class SupportTicketsController : ControllerBase
             });
         }
 
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
         var ticket = new SupportTicket
         {
             Title = request.Title.Trim(),
             Description = request.Description.Trim(),
-            Priority = request.Priority
+            Priority = request.Priority,
+            CreatedByUserId = userId
         };
 
         _context.Tickets.Add(ticket);
