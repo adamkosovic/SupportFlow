@@ -26,6 +26,7 @@ export class TicketsPage implements OnInit {
 
   readonly updatingId = signal<number | null>(null);
   readonly statusError = signal('');
+  readonly sortOrder = signal('newest');
 
   ngOnInit(): void {
     this.ticketService.getTickets().subscribe({
@@ -55,8 +56,9 @@ export class TicketsPage implements OnInit {
     const search = this.searchTerm().trim().toLocaleLowerCase('sv');
     const status = this.statusFilter();
     const priority = this.priorityFilter();
+    const sortOrder = this.sortOrder();
   
-    return this.tickets().filter(ticket => {
+    const tickets = this.tickets().filter(ticket => {
       const matchesSearch =
         ticket.title.toLocaleLowerCase('sv').includes(search) ||
         ticket.description.toLocaleLowerCase('sv').includes(search);
@@ -68,6 +70,33 @@ export class TicketsPage implements OnInit {
         priority === 'Alla' || ticket.priority === priority;
   
       return matchesSearch && matchesStatus && matchesPriority;
+    });
+  
+    const priorityRank: Record<string, number> = {
+      Hög: 3,
+      Normal: 2,
+      Låg: 1
+    };
+  
+    return tickets.sort((a, b) => {
+      const dateDifference =
+        new Date(a.createdAt).getTime() -
+        new Date(b.createdAt).getTime();
+  
+      if (sortOrder === 'oldest') {
+        return dateDifference || a.id - b.id;
+      }
+  
+      if (sortOrder === 'priority') {
+        const priorityDifference =
+          (priorityRank[b.priority] ?? 0) -
+          (priorityRank[a.priority] ?? 0);
+  
+        // Vid samma prioritet visas det äldsta ärendet först.
+        return priorityDifference || dateDifference || a.id - b.id;
+      }
+  
+      return -dateDifference || b.id - a.id;
     });
   });
   

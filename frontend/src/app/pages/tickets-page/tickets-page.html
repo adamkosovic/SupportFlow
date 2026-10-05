@@ -26,6 +26,20 @@
         (ngModelChange)="searchTerm.set($event)"
       />
     </div>
+
+    <div>
+      <label for="ticket-sort">Sortera efter</label>
+    
+      <select
+        id="ticket-sort"
+        [ngModel]="sortOrder()"
+        (ngModelChange)="sortOrder.set($event)"
+      >
+        <option value="newest">Nyast först</option>
+        <option value="oldest">Äldst först</option>
+        <option value="priority">Högst prioritet först</option>
+      </select>
+    </div>
   
     <div>
       <label for="status-filter">Filtrera på status</label>
