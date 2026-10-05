@@ -53,20 +53,25 @@ export class TicketsPage implements OnInit {
 
   readonly searchTerm = signal('');
   readonly statusFilter = signal('Alla');
+  readonly priorityFilter = signal('Alla');
 
   readonly filteredTickets = computed(() => {
     const search = this.searchTerm().trim().toLocaleLowerCase('sv');
     const status = this.statusFilter();
-
-    return this.tickets().filter((ticket) => {
+    const priority = this.priorityFilter();
+  
+    return this.tickets().filter(ticket => {
       const matchesSearch =
         ticket.title.toLocaleLowerCase('sv').includes(search) ||
         ticket.description.toLocaleLowerCase('sv').includes(search);
-
+  
       const matchesStatus =
         status === 'Alla' || ticket.status === status;
-
-      return matchesSearch && matchesStatus;
+  
+      const matchesPriority =
+        priority === 'Alla' || ticket.priority === priority;
+  
+      return matchesSearch && matchesStatus && matchesPriority;
     });
   });
 
