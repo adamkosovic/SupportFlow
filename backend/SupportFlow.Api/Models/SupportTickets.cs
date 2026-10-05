@@ -15,4 +15,8 @@ public class SupportTicket
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 
     public string? CreatedByUserId { get; set; }
+
+    public string? AssignedToUserId { get; set; }
+
+    public ApplicationUser? AssignedToUser { get; set; }
 }
