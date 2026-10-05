@@ -15,4 +15,8 @@ public class TicketComment
     public int SupportTicketId { get; set; }
 
     public SupportTicket SupportTicket { get; set; } = null!;
+
+    public string? CreatedByUserId { get; set; }
+
+    public ApplicationUser? CreatedByUser { get; set; }
 }
