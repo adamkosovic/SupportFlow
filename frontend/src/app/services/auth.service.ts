@@ -1,5 +1,5 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { AuthUser } from '../models/auth-user';
 
@@ -10,6 +10,9 @@ export class AuthService {
   private readonly http = inject(HttpClient);
 
   readonly user = signal<AuthUser | null>(null);
+  readonly isSupport = computed(() =>
+    this.user()?.roles.includes('Support') ?? false
+  );
 
   loadUser() {
     return this.http.get<AuthUser>('/api/auth/me').pipe(

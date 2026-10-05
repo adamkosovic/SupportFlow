@@ -2,7 +2,13 @@
   <header class="page-heading">
     <div>
       <h1>Översikt</h1>
-      <p>En samlad bild av organisationens IT-supportärenden.</p>
+      <p>
+        {{
+          authService.isSupport()
+            ? 'En samlad bild av organisationens IT-supportärenden.'
+            : 'En översikt över dina supportärenden.'
+        }}
+      </p>
     </div>
 
     <a class="primary-link" routerLink="/tickets">

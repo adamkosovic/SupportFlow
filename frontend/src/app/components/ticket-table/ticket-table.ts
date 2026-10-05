@@ -12,6 +12,7 @@ import { RouterLink } from '@angular/router';
 export class TicketTable {
   readonly tickets = input.required<SupportTicket[]>();
   readonly updatingId = input<number | null>(null);
+  readonly canManage = input(false);
 
   readonly statusChange = output<{
     ticket: SupportTicket;

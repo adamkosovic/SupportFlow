@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { TicketStats } from '../../components/ticket-stats/ticket-stats';
 import { SupportTicket } from '../../models/support-ticket';
 import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,6 +14,7 @@ import { TicketService } from '../../services/ticket.service';
 })
 export class Dashboard implements OnInit {
   private readonly ticketService = inject(TicketService);
+  readonly authService = inject(AuthService);
 
   readonly tickets = signal<SupportTicket[]>([]);
   readonly loading = signal(true);

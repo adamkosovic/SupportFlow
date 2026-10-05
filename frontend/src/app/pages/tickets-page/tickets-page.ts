@@ -14,6 +14,7 @@ import { TicketService } from '../../services/ticket.service';
 import { SupportTicket } from '../../models/support-ticket';
 import { TicketTable } from '../../components/ticket-table/ticket-table';
 import { TicketStats } from '../../components/ticket-stats/ticket-stats';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-tickets-page',
@@ -23,6 +24,7 @@ import { TicketStats } from '../../components/ticket-stats/ticket-stats';
 })
 export class TicketsPage implements OnInit {
   private readonly ticketService = inject(TicketService);
+  readonly authService = inject(AuthService);
 
   readonly tickets = signal<SupportTicket[]>([]);
   readonly loading = signal(true);

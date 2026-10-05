@@ -7,6 +7,7 @@ import { catchError, of, switchMap } from 'rxjs';
 import { TicketComments } from '../../components/ticket-comments/ticket-comments';
 import { SupportTicket } from '../../models/support-ticket';
 import { TicketService } from '../../services/ticket.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-ticket-detail',
@@ -17,6 +18,7 @@ import { TicketService } from '../../services/ticket.service';
 export class TicketDetail {
   private readonly route = inject(ActivatedRoute);
   private readonly ticketService = inject(TicketService);
+  readonly authService = inject(AuthService);
 
   readonly ticket = signal<SupportTicket | null>(null);
   readonly loading = signal(true);

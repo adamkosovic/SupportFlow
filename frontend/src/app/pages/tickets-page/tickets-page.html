@@ -1,8 +1,17 @@
 <main>
   <header class="page-heading">
     <div>
-      <h1>Ärenden</h1>
-      <p>Hantera och följ upp organisationens IT-supportärenden.</p>
+      <h1>
+        {{ authService.isSupport() ? 'Ärenden' : 'Mina ärenden' }}
+      </h1>
+
+      <p>
+        {{
+          authService.isSupport()
+            ? 'Hantera och följ upp organisationens IT-supportärenden.'
+            : 'Följ dina supportärenden och kontakta supporten via kommentarer.'
+        }}
+      </p>
     </div>
 
     <a class="new-ticket-link" routerLink="/tickets/new">
@@ -84,6 +93,7 @@
     <app-ticket-table
       [tickets]="pagedTickets()"
       [updatingId]="updatingId()"
+      [canManage]="authService.isSupport()"
       (statusChange)="updateStatus($event.ticket, $event.status)"
     />
 
