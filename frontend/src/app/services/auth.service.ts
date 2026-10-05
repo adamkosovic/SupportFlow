@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
-import { switchMap, tap } from 'rxjs';
+import { catchError, of, switchMap, tap, throwError } from 'rxjs';
 import { AuthUser } from '../models/auth-user';
 
 @Injectable({
@@ -13,7 +13,16 @@ export class AuthService {
 
   loadUser() {
     return this.http.get<AuthUser>('/api/auth/me').pipe(
-      tap(user => this.user.set(user))
+      tap(user => this.user.set(user)),
+      catchError((error: HttpErrorResponse) => {
+        this.user.set(null);
+
+        if (error.status === 401) {
+          return of(null);
+        }
+
+        return throwError(() => error);
+      })
     );
   }
 
@@ -28,7 +37,15 @@ export class AuthService {
 
   logout() {
     return this.http.post<void>('/api/auth/logout', {}).pipe(
-      tap(() => this.user.set(null))
+      tap(() => this.user.set(null)),
+      catchError((error: HttpErrorResponse) => {
+        if (error.status === 401) {
+          this.user.set(null);
+          return of(null);
+        }
+
+        return throwError(() => error);
+      })
     );
   }
 }

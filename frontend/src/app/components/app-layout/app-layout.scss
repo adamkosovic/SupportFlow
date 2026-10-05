@@ -226,3 +226,46 @@ a:focus-visible {
   display: grid;
   gap: 6px;
 }
+
+.account-area {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.account-email {
+  color: #64748b;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.logout-button,
+.login-link {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: white;
+  color: #334155;
+  font-size: 13px;
+  text-decoration: none;
+}
+
+.logout-button:hover:not(:disabled),
+.login-link:hover {
+  background: #f1f5f9;
+}
+
+.account-area .error {
+  width: 100%;
+  margin: 0;
+  color: #b42318;
+  font-size: 12px;
+}
+
+@media (max-width: 640px) {
+  .account-email {
+    display: none;
+  }
+}

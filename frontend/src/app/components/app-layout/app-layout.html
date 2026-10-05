@@ -62,7 +62,26 @@
         }
       </nav>
 
-      <span class="workspace-label">Supportportal</span>
+      <div class="account-area">
+        @if (authService.user(); as user) {
+          <span class="account-email">{{ user.email }}</span>
+      
+          <button
+            class="logout-button"
+            type="button"
+            [disabled]="loggingOut()"
+            (click)="logout()"
+          >
+            {{ loggingOut() ? 'Loggar ut…' : 'Logga ut' }}
+          </button>
+        } @else {
+          <a class="login-link" routerLink="/login">Logga in</a>
+        }
+      
+        @if (logoutError()) {
+          <p class="error" role="alert">{{ logoutError() }}</p>
+        }
+      </div>
     </header>
 
     <div class="page-content">

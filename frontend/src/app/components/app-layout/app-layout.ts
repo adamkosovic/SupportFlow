@@ -1,4 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
+import {
+  Component,
+  computed,
+  inject,
+  signal
+} from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import {
   NavigationEnd,
@@ -7,6 +12,8 @@ import {
   RouterLinkActive
 } from '@angular/router';
 import { filter, map, startWith } from 'rxjs';
+
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-layout',
@@ -17,6 +24,11 @@ import { filter, map, startWith } from 'rxjs';
 export class AppLayout {
   private readonly router = inject(Router);
 
+  readonly authService = inject(AuthService);
+
+  readonly loggingOut = signal(false);
+  readonly logoutError = signal('');
+
   private readonly currentUrl = toSignal(
     this.router.events.pipe(
       filter(event => event instanceof NavigationEnd),
@@ -26,11 +38,9 @@ export class AppLayout {
     { initialValue: this.router.url }
   );
 
-  readonly isDashboard = computed(() => {
-    const path = this.currentUrl().split(/[?#]/)[0];
-
-    return path === '/dashboard';
-  });
+  readonly isDashboard = computed(() =>
+    this.currentUrl().split(/[?#]/)[0] === '/dashboard'
+  );
 
   readonly isCreateTicket = computed(() =>
     this.currentUrl().split(/[?#]/)[0] === '/tickets/new'
@@ -42,4 +52,24 @@ export class AppLayout {
 
     return match?.[1] ?? null;
   });
+
+  logout(): void {
+    if (this.loggingOut()) {
+      return;
+    }
+
+    this.loggingOut.set(true);
+    this.logoutError.set('');
+
+    this.authService.logout().subscribe({
+      next: () => {
+        this.loggingOut.set(false);
+        this.router.navigate(['/login']);
+      },
+      error: () => {
+        this.logoutError.set('Kunde inte logga ut. Försök igen.');
+        this.loggingOut.set(false);
+      }
+    });
+  }
 }
