@@ -1,0 +1,38 @@
+:host {
+  display: block;
+}
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 24px;
+  color: #2563eb;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.back-link:focus-visible {
+  outline: 3px solid #2563eb;
+  outline-offset: 4px;
+}
+
+h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(28px, 4vw, 36px);
+  letter-spacing: -1px;
+}
+
+.page-heading p {
+  margin: 8px 0 24px;
+  color: #64748b;
+}

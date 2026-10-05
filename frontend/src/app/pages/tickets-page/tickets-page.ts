@@ -2,17 +2,17 @@ import { Component, inject, OnInit, signal, computed } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { TicketService } from '../../services/ticket.service';
 import { SupportTicket } from '../../models/support-ticket';
-import { TicketForm } from '../../components/ticket-form/ticket-form';
 import { TicketTable } from '../../components/ticket-table/ticket-table';
 import { TicketStats } from '../../components/ticket-stats/ticket-stats';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-tickets-page',
   imports: [
     FormsModule,
-    TicketForm,
     TicketStats,
-    TicketTable
+    TicketTable,
+    RouterLink
   ],
   templateUrl: './tickets-page.html',
   styleUrl: './tickets-page.scss'
@@ -23,10 +23,6 @@ export class TicketsPage implements OnInit {
   readonly tickets = signal<SupportTicket[]>([]);
   readonly loading = signal(true);
   readonly error = signal('');
-
-  readonly saving = signal(false);
-  readonly formError = signal('');
-  readonly success = signal('');
 
   readonly updatingId = signal<number | null>(null);
   readonly statusError = signal('');
@@ -74,34 +70,6 @@ export class TicketsPage implements OnInit {
       return matchesSearch && matchesStatus && matchesPriority;
     });
   });
-
-  createTicket(request: { 
-    title: string;
-    description: string;
-    priority: string;
-  }): void {
-    if (this.saving()) {
-      return;
-    }
-  
-    this.formError.set('');
-    this.success.set('');
-    this.saving.set(true);
-  
-    this.ticketService.createTicket(request).subscribe({
-      next: (ticket) => {
-        this.tickets.update((tickets) => [ticket, ...tickets]);
-        this.success.set('Ärendet har skapats.');
-        this.saving.set(false);
-      },
-      error: () => {
-        this.formError.set(
-          'Kunde inte skapa ärendet. Kontrollera att API:et körs.'
-        );
-        this.saving.set(false);
-      },
-    });
-  }
   
   updateStatus(ticket: SupportTicket, status: string): void {
     if (this.updatingId() !== null || ticket.status === status) {

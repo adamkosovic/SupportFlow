@@ -4,15 +4,16 @@
   @if (!loading() && !error()) {
     <app-ticket-stats [tickets]="tickets()" />
   }
-  <section class="ticket-form">
-    <app-ticket-form
-      [saving]="saving()"
-      [error]="formError()"
-      [success]="success()"
-      (submitted)="createTicket($event)"
-    />
-  </section>
-  <h2>Supportärenden</h2>
+  <header class="page-heading">
+    <div>
+      <h1>Ärenden</h1>
+      <p>Hantera och följ upp organisationens IT-supportärenden.</p>
+    </div>
+  
+    <a class="new-ticket-link" routerLink="/tickets/new">
+      + Nytt ärende
+    </a>
+  </header>
 
   <div class="ticket-filters">
     <div>

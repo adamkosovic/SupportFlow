@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { TicketsPage } from './pages/tickets-page/tickets-page';
 import { TicketDetail } from './pages/ticket-detail/ticket-detail';
+import { CreateTicket } from './pages/create-ticket/create-ticket';
 
 export const routes: Routes = [
   {
@@ -18,6 +19,11 @@ export const routes: Routes = [
     path: 'tickets',
     component: TicketsPage,
     title: 'Ärenden | SupportFlow'
+  },
+  {
+    path: 'tickets/new',
+    component: CreateTicket,
+    title: 'Nytt ärende | SupportFlow'
   },
   {
     path: 'tickets/:id',

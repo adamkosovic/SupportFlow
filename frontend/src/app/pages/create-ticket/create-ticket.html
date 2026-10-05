@@ -1,0 +1,16 @@
+<main>
+  <a class="back-link" routerLink="/tickets">
+    ← Tillbaka till ärenden
+  </a>
+
+  <header class="page-heading">
+    <h1>Nytt ärende</h1>
+    <p>Beskriv problemet och välj prioritet.</p>
+  </header>
+
+  <app-ticket-form
+    [saving]="saving()"
+    [error]="error()"
+    (submitted)="createTicket($event)"
+  />
+</main>

@@ -32,6 +32,10 @@ export class AppLayout {
     return path === '/dashboard';
   });
 
+  readonly isCreateTicket = computed(() =>
+    this.currentUrl().split(/[?#]/)[0] === '/tickets/new'
+  );
+
   readonly ticketId = computed(() => {
     const path = this.currentUrl().split(/[?#]/)[0];
     const match = path.match(/^\/tickets\/(\d+)\/?$/);

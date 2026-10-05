@@ -49,6 +49,10 @@
       
         @if (isDashboard()) {
           <strong aria-current="page">Översikt</strong>
+        } @else if (isCreateTicket()) {
+        <a routerLink="/tickets">Ärenden</a>
+        <span class="separator" aria-hidden="true">/</span>
+        <strong aria-current="page">Nytt ärende</strong>
         } @else if (ticketId(); as id) {
           <a routerLink="/tickets">Ärenden</a>
           <span class="separator" aria-hidden="true">/</span>
