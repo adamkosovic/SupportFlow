@@ -1,3 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+using SupportFlow.Api.Models;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
 
@@ -11,6 +13,22 @@ builder.Services.AddDbContext<AppDbContext>(options =>
         builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
+
+builder.Services
+    .AddIdentityApiEndpoints<ApplicationUser>(options =>
+    {
+        options.User.RequireUniqueEmail = true;
+
+        options.Password.RequiredLength = 8;
+        options.Password.RequireDigit = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireNonAlphanumeric = true;
+    })
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
@@ -29,8 +47,43 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.MapGroup("/api/auth")
+    .MapIdentityApi<ApplicationUser>();
+
+app.MapGet("/api/auth/me", async (
+    System.Security.Claims.ClaimsPrincipal principal,
+    UserManager<ApplicationUser> userManager) =>
+{
+    var user = await userManager.GetUserAsync(principal);
+
+    if (user is null)
+    {
+        return Results.Unauthorized();
+    }
+
+    var roles = await userManager.GetRolesAsync(user);
+
+    return Results.Ok(new
+    {
+        id = user.Id,
+        email = user.Email,
+        roles
+    });
+})
+.RequireAuthorization();
+
+app.MapPost("/api/auth/logout", async (
+    SignInManager<ApplicationUser> signInManager) =>
+{
+    await signInManager.SignOutAsync();
+
+    return Results.NoContent();
+})
+.RequireAuthorization();
 
 app.Run();
