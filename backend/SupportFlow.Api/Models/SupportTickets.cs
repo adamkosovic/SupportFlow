@@ -10,5 +10,7 @@ public class SupportTicket
 
     public string Status { get; set; } = "Nytt";
 
+    public string Priority { get; set; } = "Normal";
+
     public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }
