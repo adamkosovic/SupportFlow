@@ -1,9 +1,9 @@
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
 using SupportFlow.Api.Models;
-using Microsoft.AspNetCore.Authorization;
-using System.Security.Claims;
 
 namespace SupportFlow.Api.Controllers;
 
@@ -19,10 +19,29 @@ public class SupportTicketsController : ControllerBase
         _context = context;
     }
 
+    private IQueryable<SupportTicket> AccessibleTickets(string userId)
+    {
+        var query = _context.Tickets.AsQueryable();
+
+        if (!User.IsInRole("Support"))
+        {
+            query = query.Where(ticket => ticket.CreatedByUserId == userId);
+        }
+
+        return query;
+    }
+
     [HttpGet]
     public async Task<ActionResult<List<SupportTicket>>> GetAll()
     {
-        var tickets = await _context.Tickets
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
+        var tickets = await AccessibleTickets(userId)
             .AsNoTracking()
             .OrderByDescending(ticket => ticket.CreatedAt)
             .ToListAsync();
@@ -33,7 +52,14 @@ public class SupportTicketsController : ControllerBase
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportTicket>> GetById(int id)
     {
-        var ticket = await _context.Tickets
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
+        var ticket = await AccessibleTickets(userId)
             .AsNoTracking()
             .FirstOrDefaultAsync(ticket => ticket.Id == id);
 
@@ -49,6 +75,13 @@ public class SupportTicketsController : ControllerBase
     public async Task<ActionResult<SupportTicket>> Create(
         CreateTicketRequest request)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
         if (string.IsNullOrWhiteSpace(request.Title) ||
             string.IsNullOrWhiteSpace(request.Description))
         {
@@ -63,13 +96,6 @@ public class SupportTicketsController : ControllerBase
             {
                 message = "Prioriteten måste vara Låg, Normal eller Hög."
             });
-        }
-
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrWhiteSpace(userId))
-        {
-            return Unauthorized();
         }
 
         var ticket = new SupportTicket
@@ -90,6 +116,7 @@ public class SupportTicketsController : ControllerBase
         );
     }
 
+    [Authorize(Roles = "Support")]
     [HttpPatch("{id:int}/status")]
     public async Task<ActionResult<SupportTicket>> UpdateStatus(
         int id,
@@ -115,6 +142,7 @@ public class SupportTicketsController : ControllerBase
         return Ok(ticket);
     }
 
+    [Authorize(Roles = "Support")]
     [HttpPatch("{id:int}/priority")]
     public async Task<ActionResult<SupportTicket>> UpdatePriority(
         int id,

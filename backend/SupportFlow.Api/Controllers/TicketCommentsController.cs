@@ -1,9 +1,10 @@
 using System.ComponentModel.DataAnnotations;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
 using SupportFlow.Api.Models;
-using Microsoft.AspNetCore.Authorization;
 
 namespace SupportFlow.Api.Controllers;
 
@@ -19,15 +20,32 @@ public class TicketCommentsController : ControllerBase
         _context = context;
     }
 
+    private async Task<bool> CanAccessTicket(
+        int ticketId,
+        string userId,
+        CancellationToken cancellationToken)
+    {
+        var isSupport = User.IsInRole("Support");
+
+        return await _context.Tickets.AnyAsync(
+            ticket => ticket.Id == ticketId &&
+                (isSupport || ticket.CreatedByUserId == userId),
+            cancellationToken);
+    }
+
     [HttpGet]
     public async Task<ActionResult<List<TicketCommentResponse>>> GetComments(
         int ticketId,
         CancellationToken cancellationToken)
     {
-        var ticketExists = await _context.Tickets
-            .AnyAsync(ticket => ticket.Id == ticketId, cancellationToken);
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-        if (!ticketExists)
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
+        if (!await CanAccessTicket(ticketId, userId, cancellationToken))
         {
             return NotFound();
         }
@@ -55,20 +73,24 @@ public class TicketCommentsController : ControllerBase
         CreateTicketCommentRequest request,
         CancellationToken cancellationToken)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
+        if (!await CanAccessTicket(ticketId, userId, cancellationToken))
+        {
+            return NotFound();
+        }
+
         if (string.IsNullOrWhiteSpace(request.Text))
         {
             return BadRequest(new
             {
                 message = "Kommentaren får inte vara tom."
             });
-        }
-
-        var ticketExists = await _context.Tickets
-            .AnyAsync(ticket => ticket.Id == ticketId, cancellationToken);
-
-        if (!ticketExists)
-        {
-            return NotFound();
         }
 
         var comment = new TicketComment
