@@ -3,5 +3,6 @@ export interface SupportTicket {
   title: string;
   description: string;
   status: string;
+  priority: string;
   createdAt: string;
 }

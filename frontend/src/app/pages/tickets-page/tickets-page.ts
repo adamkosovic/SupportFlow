@@ -70,7 +70,11 @@ export class TicketsPage implements OnInit {
     });
   });
 
-  createTicket(request: { title: string; description: string }): void {
+  createTicket(request: { 
+    title: string;
+    description: string;
+    priority: string;
+  }): void {
     if (this.saving()) {
       return;
     }

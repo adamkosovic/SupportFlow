@@ -8,6 +8,7 @@
       <tr>
         <th scope="col">Ärende</th>
         <th scope="col">Status</th>
+        <th scope="col">Prioritet</th>
         <th scope="col">Skapat</th>
         <th scope="col">Ändra status</th>
       </tr>
@@ -36,6 +37,17 @@
             </span>
           </td>
 
+          <td>
+            <span
+              class="priority-badge"
+              [class.priority-low]="ticket.priority === 'Låg'"
+              [class.priority-normal]="ticket.priority === 'Normal'"
+              [class.priority-high]="ticket.priority === 'Hög'"
+            >
+              {{ ticket.priority }}
+            </span>
+          </td>
+
           <td class="date-cell">
             {{ ticket.createdAt | date:'yyyy-MM-dd' }}
             <small>{{ ticket.createdAt | date:'HH:mm' }}</small>
@@ -60,7 +72,7 @@
         </tr>
       } @empty {
         <tr>
-          <td colspan="4" class="empty-state">
+          <td colspan="5" class="empty-state">
             <strong>Inga ärenden att visa</strong>
             <p>Skapa ett ärende eller ändra dina sökfilter.</p>
           </td>

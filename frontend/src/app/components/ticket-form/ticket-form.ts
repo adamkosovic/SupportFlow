@@ -15,10 +15,12 @@ export class TicketForm {
   readonly submitted = output<{
     title: string;
     description: string;
+    priority: string;
   }>();
 
   title = '';
   description = '';
+  priority = 'Normal';
   validationError = '';
 
   constructor() {
@@ -26,6 +28,7 @@ export class TicketForm {
       if (this.success()) {
         this.title = '';
         this.description = '';
+        this.priority = 'Normal';
         this.validationError = '';
       }
     });
@@ -45,6 +48,11 @@ export class TicketForm {
     }
 
     this.validationError = '';
-    this.submitted.emit({ title, description });
+
+    this.submitted.emit({
+      title,
+      description,
+      priority: this.priority,
+    });
   }
 }
