@@ -1,9 +1,10 @@
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Models;
 
 namespace SupportFlow.Api.Data;
 
-public class AppDbContext : DbContext
+public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
     public AppDbContext(DbContextOptions<AppDbContext> options)
         : base(options)
@@ -11,5 +12,6 @@ public class AppDbContext : DbContext
     }
 
     public DbSet<SupportTicket> Tickets => Set<SupportTicket>();
+
     public DbSet<TicketComment> Comments => Set<TicketComment>();
 }

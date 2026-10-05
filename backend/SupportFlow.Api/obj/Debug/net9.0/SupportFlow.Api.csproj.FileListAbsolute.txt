@@ -244,3 +244,4 @@
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.pdb
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.genruntimeconfig.cache
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/ref/SupportFlow.Api.dll
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
