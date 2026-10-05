@@ -1,23 +1,23 @@
 <main>
-  <h1>Ärenden</h1>
-  <p>Hantera och följ upp organisationens IT-supportärenden.</p>
-  @if (!loading() && !error()) {
-    <app-ticket-stats [tickets]="tickets()" />
-  }
   <header class="page-heading">
     <div>
       <h1>Ärenden</h1>
       <p>Hantera och följ upp organisationens IT-supportärenden.</p>
     </div>
-  
+
     <a class="new-ticket-link" routerLink="/tickets/new">
       + Nytt ärende
     </a>
   </header>
 
+  @if (!loading() && !error()) {
+    <app-ticket-stats [tickets]="tickets()" />
+  }
+
   <div class="ticket-filters">
     <div>
       <label for="search">Sök ärenden</label>
+
       <input
         id="search"
         type="search"
@@ -28,35 +28,23 @@
     </div>
 
     <div>
-      <label for="ticket-sort">Sortera efter</label>
-    
-      <select
-        id="ticket-sort"
-        [ngModel]="sortOrder()"
-        (ngModelChange)="sortOrder.set($event)"
-      >
-        <option value="newest">Nyast först</option>
-        <option value="oldest">Äldst först</option>
-        <option value="priority">Högst prioritet först</option>
-      </select>
-    </div>
-  
-    <div>
-      <label for="status-filter">Filtrera på status</label>
+      <label for="status-filter">Status</label>
+
       <select
         id="status-filter"
         [ngModel]="statusFilter()"
         (ngModelChange)="statusFilter.set($event)"
       >
-        <option value="Alla">Alla</option>
+        <option value="Alla">Alla statusar</option>
         <option value="Nytt">Nytt</option>
         <option value="Pågår">Pågår</option>
         <option value="Löst">Löst</option>
       </select>
     </div>
+
     <div>
       <label for="priority-filter">Prioritet</label>
-    
+
       <select
         id="priority-filter"
         [ngModel]="priorityFilter()"
@@ -68,6 +56,20 @@
         <option value="Hög">Hög</option>
       </select>
     </div>
+
+    <div>
+      <label for="ticket-sort">Sortera efter</label>
+
+      <select
+        id="ticket-sort"
+        [ngModel]="sortOrder()"
+        (ngModelChange)="sortOrder.set($event)"
+      >
+        <option value="newest">Nyast först</option>
+        <option value="oldest">Äldst först</option>
+        <option value="priority">Högst prioritet först</option>
+      </select>
+    </div>
   </div>
 
   @if (statusError()) {
@@ -75,17 +77,45 @@
   }
 
   @if (loading()) {
-    <p>Laddar ärenden…</p>
+    <p role="status">Laddar ärenden…</p>
   } @else if (error()) {
     <p class="error" role="alert">{{ error() }}</p>
   } @else {
-    <p role="status">
-      Visar {{ filteredTickets().length }} av {{ tickets().length }} ärenden.
-    </p>
     <app-ticket-table
-      [tickets]="filteredTickets()"
+      [tickets]="pagedTickets()"
       [updatingId]="updatingId()"
       (statusChange)="updateStatus($event.ticket, $event.status)"
     />
+
+    @if (filteredTickets().length > 0) {
+      <nav class="pagination" aria-label="Sidindelning för ärenden">
+        <p role="status">
+          Visar {{ pageStart() }}–{{ pageEnd() }}
+          av {{ filteredTickets().length }} träffar
+        </p>
+
+        <div class="pagination-controls">
+          <button
+            type="button"
+            [disabled]="currentPage() === 1"
+            (click)="previousPage()"
+          >
+            ← Föregående
+          </button>
+
+          <span>
+            Sida {{ currentPage() }} av {{ totalPages() }}
+          </span>
+
+          <button
+            type="button"
+            [disabled]="currentPage() === totalPages()"
+            (click)="nextPage()"
+          >
+            Nästa →
+          </button>
+        </div>
+      </nav>
+    }
   }
 </main>

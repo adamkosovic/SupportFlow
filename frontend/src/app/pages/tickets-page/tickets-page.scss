@@ -65,3 +65,43 @@ h2 {
   outline: 3px solid #2563eb;
   outline-offset: 4px;
 }
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-top: 20px;
+}
+
+.pagination p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.pagination-controls {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.pagination-controls span {
+  color: #475569;
+  font-size: 13px;
+}
+
+.pagination-controls button {
+  padding: 8px 12px;
+  border: 1px solid #cbd5e1;
+  background: white;
+  color: #334155;
+  font-size: 13px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background: #eff6ff;
+  color: #1d4ed8;
+}
