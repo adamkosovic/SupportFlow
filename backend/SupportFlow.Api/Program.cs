@@ -50,6 +50,58 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    using var scope = app.Services.CreateScope();
+
+    var roleManager = scope.ServiceProvider
+        .GetRequiredService<RoleManager<IdentityRole>>();
+
+    var userManager = scope.ServiceProvider
+        .GetRequiredService<UserManager<ApplicationUser>>();
+
+    const string supportRole = "Support";
+
+    if (!await roleManager.RoleExistsAsync(supportRole))
+    {
+        var result = await roleManager.CreateAsync(
+            new IdentityRole(supportRole)
+        );
+
+        if (!result.Succeeded)
+        {
+            throw new InvalidOperationException(
+                string.Join("; ", result.Errors.Select(error => error.Description))
+            );
+        }
+    }
+
+    var supportEmail = builder.Configuration["Seed:SupportEmail"];
+
+    if (!string.IsNullOrWhiteSpace(supportEmail))
+    {
+        var user = await userManager.FindByEmailAsync(supportEmail);
+
+        if (user is null)
+        {
+            app.Logger.LogWarning(
+                "Supportkontot finns inte. Registrera kontot och starta om API:et."
+            );
+        }
+        else if (!await userManager.IsInRoleAsync(user, supportRole))
+        {
+            var result = await userManager.AddToRoleAsync(user, supportRole);
+
+            if (!result.Succeeded)
+            {
+                throw new InvalidOperationException(
+                    string.Join("; ", result.Errors.Select(error => error.Description))
+                );
+            }
+        }
+    }
+}
+
+if (app.Environment.IsDevelopment())
+{
     app.MapOpenApi();
 
     app.UseSwaggerUI(options =>
