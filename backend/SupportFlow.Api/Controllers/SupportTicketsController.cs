@@ -52,10 +52,21 @@ public class SupportTicketsController : ControllerBase
             return BadRequest("Rubrik och beskrivning måste fyllas i.");
         }
 
+        var allowedPriorities = new[] { "Låg", "Normal", "Hög" };
+
+        if (!allowedPriorities.Contains(request.Priority))
+        {
+            return BadRequest(new
+            {
+                message = "Prioriteten måste vara Låg, Normal eller Hög."
+            });
+        }
+
         var ticket = new SupportTicket
         {
             Title = request.Title.Trim(),
-            Description = request.Description.Trim()
+            Description = request.Description.Trim(),
+            Priority = request.Priority
         };
 
         _context.Tickets.Add(ticket);
@@ -100,6 +111,8 @@ public class CreateTicketRequest
     public string Title { get; set; } = string.Empty;
 
     public string Description { get; set; } = string.Empty;
+
+    public string Priority { get; set; } = "Normal";
 }
 
 public class UpdateTicketStatusRequest
