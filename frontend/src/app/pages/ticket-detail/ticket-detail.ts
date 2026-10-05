@@ -23,6 +23,8 @@ export class TicketDetail {
   readonly error = signal('');
   readonly saving = signal(false);
   readonly statusError = signal('');
+  readonly savingPriority = signal(false);
+  readonly priorityError = signal('');
 
   constructor() {
     this.route.paramMap.pipe(
@@ -63,6 +65,7 @@ export class TicketDetail {
     if (
       !currentTicket ||
       this.saving() ||
+      this.savingPriority() ||
       currentTicket.status === status
     ) {
       return;
@@ -83,6 +86,41 @@ export class TicketDetail {
       error: () => {
         this.statusError.set('Kunde inte ändra status. Försök igen.');
         this.saving.set(false);
+      }
+    });
+  }
+
+  updatePriority(priority: string): void {
+    const currentTicket = this.ticket();
+  
+    if (
+      !currentTicket ||
+      this.saving() ||
+      this.savingPriority() ||
+      currentTicket.priority === priority
+    ) {
+      return;
+    }
+  
+    this.priorityError.set('');
+    this.savingPriority.set(true);
+  
+    this.ticketService.updatePriority(
+      currentTicket.id,
+      priority
+    ).subscribe({
+      next: updatedTicket => {
+        if (this.ticket()?.id === updatedTicket.id) {
+          this.ticket.set(updatedTicket);
+        }
+  
+        this.savingPriority.set(false);
+      },
+      error: () => {
+        this.priorityError.set(
+          'Kunde inte ändra prioriteten. Försök igen.'
+        );
+        this.savingPriority.set(false);
       }
     });
   }

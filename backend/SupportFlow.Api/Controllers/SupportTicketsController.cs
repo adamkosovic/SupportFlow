@@ -99,8 +99,39 @@ public class SupportTicketsController : ControllerBase
         }
 
         ticket.Status = request.Status;
-
         await _context.SaveChangesAsync();
+
+        return Ok(ticket);
+    }
+
+    [HttpPatch("{id:int}/priority")]
+    public async Task<ActionResult<SupportTicket>> UpdatePriority(
+        int id,
+        UpdateTicketPriorityRequest request,
+        CancellationToken cancellationToken)
+    {
+        var allowedPriorities = new[] { "Låg", "Normal", "Hög" };
+
+        if (!allowedPriorities.Contains(request.Priority))
+        {
+            return BadRequest(new
+            {
+                message = "Prioriteten måste vara Låg, Normal eller Hög."
+            });
+        }
+
+        var ticket = await _context.Tickets
+            .FirstOrDefaultAsync(
+                ticket => ticket.Id == id,
+                cancellationToken);
+
+        if (ticket is null)
+        {
+            return NotFound();
+        }
+
+        ticket.Priority = request.Priority;
+        await _context.SaveChangesAsync(cancellationToken);
 
         return Ok(ticket);
     }
@@ -118,4 +149,9 @@ public class CreateTicketRequest
 public class UpdateTicketStatusRequest
 {
     public string Status { get; set; } = string.Empty;
+}
+
+public class UpdateTicketPriorityRequest
+{
+    public string Priority { get; set; } = string.Empty;
 }

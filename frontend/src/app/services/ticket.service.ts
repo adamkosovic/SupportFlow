@@ -44,4 +44,11 @@ export class TicketService {
       { text }
     );
   }
+
+  updatePriority(id: number, priority: string) {
+    return this.http.patch<SupportTicket>(
+      `/api/tickets/${id}/priority`,
+      { priority }
+    );
+  }
 }

@@ -18,16 +18,14 @@
     </header>
 
     <div class="detail-grid">
-      <section class="detail-card">
-        <div class="detail-main">
-          <section class="detail-card">
-            <h2>Beskrivning</h2>
-            <p class="description">{{ currentTicket.description }}</p>
-          </section>
-        
-          <app-ticket-comments [ticketId]="currentTicket.id" />
-        </div>
-      </section>
+      <div class="detail-main">
+        <section class="detail-card">
+          <h2>Beskrivning</h2>
+          <p class="description">{{ currentTicket.description }}</p>
+        </section>
+
+        <app-ticket-comments [ticketId]="currentTicket.id" />
+      </div>
 
       <aside class="detail-card" aria-label="Ärendeinformation">
         <h2>Ärendeinformation</h2>
@@ -46,7 +44,7 @@
           </dd>
 
           <dt>Prioritet</dt>
-          <dd>{{ currentTicket.priority }}</dd> 
+          <dd>{{ currentTicket.priority }}</dd>
 
           <dt>Skapat</dt>
           <dd>
@@ -56,6 +54,7 @@
           <dt>Ärendenummer</dt>
           <dd>#{{ currentTicket.id }}</dd>
         </dl>
+
         <div class="status-controls">
           <h3>Ändra status</h3>
 
@@ -63,7 +62,11 @@
             @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
               <button
                 type="button"
-                [disabled]="saving() || currentTicket.status === status"
+                [disabled]="
+                  saving() ||
+                  savingPriority() ||
+                  currentTicket.status === status
+                "
                 [class.selected]="currentTicket.status === status"
                 [attr.aria-pressed]="currentTicket.status === status"
                 (click)="updateStatus(status)"
@@ -79,6 +82,36 @@
 
           @if (statusError()) {
             <p class="error" role="alert">{{ statusError() }}</p>
+          }
+        </div>
+
+        <div class="status-controls">
+          <h3>Ändra prioritet</h3>
+
+          <div class="status-buttons">
+            @for (priority of ['Låg', 'Normal', 'Hög']; track priority) {
+              <button
+                type="button"
+                [disabled]="
+                  saving() ||
+                  savingPriority() ||
+                  currentTicket.priority === priority
+                "
+                [class.selected]="currentTicket.priority === priority"
+                [attr.aria-pressed]="currentTicket.priority === priority"
+                (click)="updatePriority(priority)"
+              >
+                {{ priority }}
+              </button>
+            }
+          </div>
+
+          @if (savingPriority()) {
+            <p role="status">Sparar prioritet…</p>
+          }
+
+          @if (priorityError()) {
+            <p class="error" role="alert">{{ priorityError() }}</p>
           }
         </div>
       </aside>
