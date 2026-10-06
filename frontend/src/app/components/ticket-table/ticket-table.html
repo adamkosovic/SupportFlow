@@ -66,6 +66,7 @@
           @if (canManage()) {
             <td class="action-cell">
               <select
+                title="Ändra ärendets status"
                 [value]="ticket.status"
                 [disabled]="updatingId() !== null"
                 [attr.aria-label]="'Ändra status för ärende ' + ticket.id"
