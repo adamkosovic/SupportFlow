@@ -3,6 +3,16 @@
 }
 
 .auth-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   min-height: 100vh;
-  padding: 40px 20px;
+  min-height: 100dvh;
+  padding: 64px 24px;
+}
+
+@media (max-width: 600px) {
+  .auth-page {
+    padding: 32px 16px;
+  }
 }
