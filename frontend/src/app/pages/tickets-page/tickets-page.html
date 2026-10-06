@@ -21,17 +21,37 @@
 
   @if (!loading() && !error()) {
     <app-ticket-stats [tickets]="tickets()" />
-  
+
     @if (authService.isSupport()) {
       <p class="stats-note">Statistiken gäller vald tilldelning.</p>
     }
   }
 
-  <div class="ticket-filters">
+  <button
+    class="filter-toggle"
+    type="button"
+    [attr.aria-expanded]="filtersOpen()"
+    aria-controls="ticket-filter-panel"
+    (click)="filtersOpen.set(!filtersOpen())"
+  >
+    <span>
+      {{ filtersOpen() ? 'Dölj sökning och filter' : 'Visa sökning och filter' }}
+    </span>
+
+    <span aria-hidden="true">
+      {{ filtersOpen() ? '−' : '+' }}
+    </span>
+  </button>
+
+  <div
+    id="ticket-filter-panel"
+    class="ticket-filters"
+    [hidden]="!filtersOpen()"
+  >
     @if (authService.isSupport()) {
       <div>
         <label for="assignment-filter">Tilldelning</label>
-    
+
         <select
           id="assignment-filter"
           [ngModel]="assignmentFilter()"
@@ -44,6 +64,7 @@
         </select>
       </div>
     }
+
     <div>
       <label for="search">Sök ärenden</label>
 

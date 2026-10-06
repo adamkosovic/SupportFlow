@@ -159,21 +159,29 @@
 
       @if (canManage()) {
         <div class="mobile-status-control">
-          <label [for]="'mobile-status-' + ticket.id">
-            Ändra status
-          </label>
-
-          <select
-            [id]="'mobile-status-' + ticket.id"
-            [value]="ticket.status"
-            [disabled]="updatingId() !== null"
-            (change)="changeStatus(ticket, $event)"
+          <p class="status-control-label">Ändra status</p>
+        
+          <div
+            class="mobile-status-buttons"
+            role="group"
+            [attr.aria-label]="'Ändra status för ärende ' + ticket.id"
           >
-            <option value="Nytt">Nytt</option>
-            <option value="Pågår">Pågår</option>
-            <option value="Löst">Löst</option>
-          </select>
-
+            @for (status of ['Nytt', 'Pågår', 'Löst']; track status) {
+              <button
+                type="button"
+                [disabled]="
+                  updatingId() !== null ||
+                  ticket.status === status
+                "
+                [class.selected]="ticket.status === status"
+                [attr.aria-pressed]="ticket.status === status"
+                (click)="statusChange.emit({ ticket: ticket, status: status })"
+              >
+                {{ status }}
+              </button>
+            }
+          </div>
+        
           @if (updatingId() === ticket.id) {
             <small role="status">Sparar…</small>
           }

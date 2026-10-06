@@ -293,3 +293,110 @@ select:disabled {
     background: #fff;
   }
 }
+
+.action-cell select,
+.mobile-status-control select {
+  appearance: none;
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 42px 12px 14px;
+  border: 1px solid #dce2eb;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364758b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  color: #334155;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.action-cell select:hover:not(:disabled),
+.mobile-status-control select:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background-color: #fff;
+}
+
+.action-cell select:focus,
+.mobile-status-control select:focus {
+  border-color: #2457d6;
+  outline: 2px solid #2457d6;
+  outline-offset: 2px;
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgb(36 87 214 / 8%);
+}
+
+.action-cell select:disabled,
+.mobile-status-control select:disabled {
+  background-color: #f1f5f9;
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.mobile-status-control label {
+  margin-bottom: 10px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (forced-colors: active) {
+  .action-cell select,
+  .mobile-status-control select {
+    appearance: auto;
+    background-image: none;
+  }
+}
+
+.action-cell select:focus,
+.mobile-status-control select:focus {
+  border-color: #2457d6;
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(36 87 214 / 15%);
+}
+
+.action-cell select:focus-visible,
+.mobile-status-control select:focus-visible {
+  outline: 2px solid #2457d6;
+  outline-offset: 2px;
+}
+
+.status-control-label {
+  margin: 0 0 10px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mobile-status-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.mobile-status-buttons button {
+  min-width: 0;
+  min-height: 44px;
+  padding: 10px 6px;
+  border: 1px solid #dce2eb;
+  border-radius: 9px;
+  background: #f8fafc;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.mobile-status-buttons button:hover:not(:disabled) {
+  border-color: #2457d6;
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.mobile-status-buttons button.selected {
+  border-color: #2457d6;
+  background: #eff6ff;
+  color: #1d4ed8;
+  opacity: 1;
+}

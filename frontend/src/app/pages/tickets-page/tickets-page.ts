@@ -41,6 +41,7 @@ export class TicketsPage {
   readonly priorityFilter = signal('Alla');
   readonly sortOrder = signal('newest');
   readonly assignmentFilter = signal('all');
+  readonly filtersOpen = signal(false);
 
   readonly pageSize = 10;
   readonly currentPage = signal(1);

@@ -164,3 +164,126 @@ main {
     width: 100%;
   }
 }
+
+.filter-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 48px;
+  margin-bottom: 16px;
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+  color: #334155;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.filter-toggle:hover:not(:disabled) {
+  background: #f8fafc;
+}
+
+.filter-toggle[aria-expanded='true'] {
+  border-color: #2457d6;
+  color: #2457d6;
+}
+
+.ticket-filters[hidden] {
+  display: none;
+}
+
+.ticket-filters {
+  gap: 20px;
+  padding: 24px;
+  border: 1px solid #e2e8f0;
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 4px 16px rgb(15 23 42 / 3%);
+}
+
+.ticket-filters label {
+  margin-bottom: 10px;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.ticket-filters input,
+.ticket-filters select {
+  width: 100%;
+  min-height: 48px;
+  margin: 0;
+  padding: 12px 14px;
+  border: 1px solid #dce2eb;
+  border-radius: 10px;
+  background-color: #f8fafc;
+  color: #334155;
+  font-size: 16px;
+  transition:
+    border-color 150ms ease,
+    background-color 150ms ease,
+    box-shadow 150ms ease;
+}
+
+.ticket-filters select {
+  appearance: none;
+  padding-right: 42px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 24 24' fill='none' stroke='%2364758b' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  background-size: 18px;
+  cursor: pointer;
+}
+
+.ticket-filters input::placeholder {
+  color: #64748b;
+}
+
+.ticket-filters input:hover:not(:disabled),
+.ticket-filters select:hover:not(:disabled) {
+  border-color: #94a3b8;
+  background-color: #fff;
+}
+
+.ticket-filters input:focus,
+.ticket-filters select:focus {
+  border-color: #2457d6;
+  outline: 2px solid #2457d6;
+  outline-offset: 2px;
+  background-color: #fff;
+  box-shadow: 0 0 0 5px rgb(36 87 214 / 8%);
+}
+
+.ticket-filters select:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.ticket-filters[hidden] {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .ticket-filters {
+    gap: 18px;
+    padding: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticket-filters input,
+  .ticket-filters select {
+    transition: none;
+  }
+}
+
+@media (forced-colors: active) {
+  .ticket-filters select {
+    appearance: auto;
+    background-image: none;
+  }
+}
