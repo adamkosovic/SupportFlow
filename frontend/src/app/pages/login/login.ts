@@ -1,7 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 
 import { AuthService } from '../../services/auth.service';
 
@@ -14,6 +14,11 @@ import { AuthService } from '../../services/auth.service';
 export class Login {
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+
+  private readonly route = inject(ActivatedRoute);
+
+  readonly sessionExpired =
+    this.route.snapshot.queryParamMap.get('sessionExpired') === 'true';
 
   email = '';
   password = '';

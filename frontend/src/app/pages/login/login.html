@@ -8,6 +8,12 @@
     <h1 id="login-heading">Logga in</h1>
     <p class="subtitle">Välkommen till SupportFlow.</p>
 
+    @if (sessionExpired) {
+      <p class="session-message" role="status">
+        Din inloggning har gått ut. Logga in igen.
+      </p>
+    }
+
     <form #loginForm="ngForm" (ngSubmit)="submit()">
       <fieldset [disabled]="saving()">
         <label for="login-email">E-post</label>
