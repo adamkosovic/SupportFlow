@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { SupportTicket } from '../models/support-ticket';
 import { TicketComment } from '../models/ticket-comment';
 import { TicketAssignment } from '../models/ticket-assignment';
+import { TicketHistory } from '../models/ticket-history';
 
 @Injectable({
   providedIn: 'root',
@@ -71,6 +72,12 @@ export class TicketService {
   releaseAssignment(ticketId: number) {
     return this.http.delete<void>(
       `/api/tickets/${ticketId}/assignment/me`
+    );
+  }
+
+  getHistory(ticketId: number) {
+    return this.http.get<TicketHistory[]>(
+      `/api/tickets/${ticketId}/history`
     );
   }
 }

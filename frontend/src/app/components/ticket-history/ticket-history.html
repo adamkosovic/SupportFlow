@@ -1,0 +1,34 @@
+<section class="history-card" aria-labelledby="history-heading">
+  <h2 id="history-heading">Ärendehistorik</h2>
+
+  @if (loading()) {
+    <p role="status">Laddar historik…</p>
+  } @else if (error()) {
+    <p class="error" role="alert">{{ error() }}</p>
+  } @else {
+    <ol class="history-list">
+      @for (entry of history(); track entry.id) {
+        <li>
+          <span class="history-dot" aria-hidden="true"></span>
+
+          <div>
+            <p>
+              <strong>
+                {{ entry.changedByEmail || 'Okänd användare' }}
+              </strong>
+              {{ describe(entry) }}
+            </p>
+
+            <time [attr.datetime]="entry.createdAt">
+              {{ entry.createdAt | date:'yyyy-MM-dd HH:mm' }}
+            </time>
+          </div>
+        </li>
+      } @empty {
+        <li class="empty-history">
+          Inga ändringar har registrerats ännu.
+        </li>
+      }
+    </ol>
+  }
+</section>

@@ -14,4 +14,18 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<SupportTicket> Tickets => Set<SupportTicket>();
 
     public DbSet<TicketComment> Comments => Set<TicketComment>();
+
+    public DbSet<TicketHistory> TicketHistories => Set<TicketHistory>();
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        base.OnModelCreating(builder);
+
+        builder.Entity<TicketHistory>()
+            .HasIndex(history => new
+            {
+                history.SupportTicketId,
+                history.CreatedAt
+            });
+    }
 }

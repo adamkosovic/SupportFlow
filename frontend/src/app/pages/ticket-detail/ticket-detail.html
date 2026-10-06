@@ -25,6 +25,10 @@
         </section>
 
         <app-ticket-comments [ticketId]="currentTicket.id" />
+        <app-ticket-history
+          [ticketId]="currentTicket.id"
+          [refreshKey]="historyRefreshKey()"
+        />
       </div>
 
       <aside class="detail-card" aria-label="Ärendeinformation">

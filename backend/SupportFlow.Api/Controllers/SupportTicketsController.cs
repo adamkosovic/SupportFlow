@@ -32,52 +32,52 @@ public class SupportTicketsController : ControllerBase
     }
 
     [HttpGet]
-public async Task<ActionResult<List<SupportTicket>>> GetAll(
-    [FromQuery] string assignment = "all",
-    CancellationToken cancellationToken = default)
-{
-    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-    if (string.IsNullOrWhiteSpace(userId))
+    public async Task<ActionResult<List<SupportTicket>>> GetAll(
+        [FromQuery] string assignment = "all",
+        CancellationToken cancellationToken = default)
     {
-        return Unauthorized();
-    }
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-    var allowedFilters = new[] { "all", "mine", "unassigned" };
-
-    if (!allowedFilters.Contains(assignment))
-    {
-        return BadRequest(new
+        if (string.IsNullOrWhiteSpace(userId))
         {
-            message = "Tilldelningsfiltret måste vara all, mine eller unassigned."
-        });
+            return Unauthorized();
+        }
+
+        var allowedFilters = new[] { "all", "mine", "unassigned" };
+
+        if (!allowedFilters.Contains(assignment))
+        {
+            return BadRequest(new
+            {
+                message = "Tilldelningsfiltret måste vara all, mine eller unassigned."
+            });
+        }
+
+        if (assignment != "all" && !User.IsInRole("Support"))
+        {
+            return Forbid();
+        }
+
+        var query = AccessibleTickets(userId).AsNoTracking();
+
+        if (assignment == "mine")
+        {
+            query = query.Where(ticket =>
+                ticket.AssignedToUserId == userId);
+        }
+        else if (assignment == "unassigned")
+        {
+            query = query.Where(ticket =>
+                ticket.AssignedToUserId == null);
+        }
+
+        var tickets = await query
+            .OrderByDescending(ticket => ticket.CreatedAt)
+            .ThenByDescending(ticket => ticket.Id)
+            .ToListAsync(cancellationToken);
+
+        return Ok(tickets);
     }
-
-    if (assignment != "all" && !User.IsInRole("Support"))
-    {
-        return Forbid();
-    }
-
-    var query = AccessibleTickets(userId).AsNoTracking();
-
-    if (assignment == "mine")
-    {
-        query = query.Where(ticket =>
-            ticket.AssignedToUserId == userId);
-    }
-    else if (assignment == "unassigned")
-    {
-        query = query.Where(ticket =>
-            ticket.AssignedToUserId == null);
-    }
-
-    var tickets = await query
-        .OrderByDescending(ticket => ticket.CreatedAt)
-        .ThenByDescending(ticket => ticket.Id)
-        .ToListAsync(cancellationToken);
-
-    return Ok(tickets);
-}
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportTicket>> GetById(int id)
@@ -150,24 +150,59 @@ public async Task<ActionResult<List<SupportTicket>>> GetAll(
     [HttpPatch("{id:int}/status")]
     public async Task<ActionResult<SupportTicket>> UpdateStatus(
         int id,
-        UpdateTicketStatusRequest request)
+        UpdateTicketStatusRequest request,
+        CancellationToken cancellationToken)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
         var allowedStatuses = new[] { "Nytt", "Pågår", "Löst" };
 
         if (!allowedStatuses.Contains(request.Status))
         {
-            return BadRequest("Status måste vara Nytt, Pågår eller Löst.");
+            return BadRequest(new
+            {
+                message = "Status måste vara Nytt, Pågår eller Löst."
+            });
         }
 
-        var ticket = await _context.Tickets.FindAsync(id);
+        var ticket = await _context.Tickets
+            .FirstOrDefaultAsync(
+                ticket => ticket.Id == id,
+                cancellationToken);
 
         if (ticket is null)
         {
             return NotFound();
         }
 
+        if (ticket.Status == request.Status)
+        {
+            return Ok(ticket);
+        }
+
+        var email = await _context.Users
+            .Where(user => user.Id == userId)
+            .Select(user => user.Email)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        _context.TicketHistories.Add(new TicketHistory
+        {
+            SupportTicketId = ticket.Id,
+            Action = "StatusChanged",
+            OldValue = ticket.Status,
+            NewValue = request.Status,
+            ChangedByUserId = userId,
+            ChangedByEmail = email
+        });
+
         ticket.Status = request.Status;
-        await _context.SaveChangesAsync();
+
+        await _context.SaveChangesAsync(cancellationToken);
 
         return Ok(ticket);
     }
@@ -179,6 +214,13 @@ public async Task<ActionResult<List<SupportTicket>>> GetAll(
         UpdateTicketPriorityRequest request,
         CancellationToken cancellationToken)
     {
+        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+        if (string.IsNullOrWhiteSpace(userId))
+        {
+            return Unauthorized();
+        }
+
         var allowedPriorities = new[] { "Låg", "Normal", "Hög" };
 
         if (!allowedPriorities.Contains(request.Priority))
@@ -199,7 +241,28 @@ public async Task<ActionResult<List<SupportTicket>>> GetAll(
             return NotFound();
         }
 
+        if (ticket.Priority == request.Priority)
+        {
+            return Ok(ticket);
+        }
+
+        var email = await _context.Users
+            .Where(user => user.Id == userId)
+            .Select(user => user.Email)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        _context.TicketHistories.Add(new TicketHistory
+        {
+            SupportTicketId = ticket.Id,
+            Action = "PriorityChanged",
+            OldValue = ticket.Priority,
+            NewValue = request.Priority,
+            ChangedByUserId = userId,
+            ChangedByEmail = email
+        });
+
         ticket.Priority = request.Priority;
+
         await _context.SaveChangesAsync(cancellationToken);
 
         return Ok(ticket);
