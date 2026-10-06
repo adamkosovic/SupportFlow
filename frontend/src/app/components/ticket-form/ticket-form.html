@@ -1,45 +1,80 @@
-<section>
-  <h2>Skapa ett ärende</h2>
+<section class="form-card" aria-labelledby="ticket-form-heading">
+  <header class="form-heading">
+    <h2 id="ticket-form-heading">Ärendeinformation</h2>
+    <p>Alla fält behöver fyllas i.</p>
+  </header>
 
   <form #ticketForm="ngForm" (ngSubmit)="submit()">
     <fieldset [disabled]="saving()">
-      <label for="title">Rubrik</label>
-      <input
-        id="title"
-        name="title"
-        type="text"
-        [(ngModel)]="title"
-        required
-        placeholder="Exempel: Problem med skrivaren"
-      />
+      <div class="form-field">
+        <label for="title">Rubrik</label>
 
-      <label for="description">Beskrivning</label>
-      <textarea
-        id="description"
-        name="description"
-        [(ngModel)]="description"
-        required
-        rows="4"
-        placeholder="Beskriv problemet"
-      ></textarea>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          [(ngModel)]="title"
+          required
+          placeholder="Exempel: Problem med skrivaren"
+        />
+      </div>
 
-      <label for="ticket-priority">Prioritet</label>
+      <div class="form-field">
+        <label for="description">Beskrivning</label>
 
-      <select
-        id="ticket-priority"
-        name="priority"
-        [(ngModel)]="priority"
-        required
-      >
-        <option value="Låg">Låg</option>
-        <option value="Normal">Normal</option>
-        <option value="Hög">Hög</option>
-      </select>
+        <textarea
+          id="description"
+          name="description"
+          [(ngModel)]="description"
+          required
+          rows="6"
+          aria-describedby="description-help"
+          placeholder="Beskriv problemet och hur det påverkar ditt arbete…"
+        ></textarea>
 
-      <button type="submit" [disabled]="ticketForm.invalid || saving()">
-        {{ saving() ? 'Sparar…' : 'Skapa ärende' }}
-      </button>
+        <p id="description-help" class="field-help">
+          Berätta gärna när problemet började och vad du redan har provat.
+        </p>
+      </div>
+
+      <div class="form-field">
+        <label for="ticket-priority">Prioritet</label>
+
+        <select
+          id="ticket-priority"
+          name="priority"
+          [(ngModel)]="priority"
+          required
+          aria-describedby="priority-help"
+        >
+          <option value="Låg">Låg</option>
+          <option value="Normal">Normal</option>
+          <option value="Hög">Hög</option>
+        </select>
+
+        <p id="priority-help" class="field-help">
+          Välj hög prioritet om problemet hindrar dig från att arbeta.
+        </p>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="submit"
+          [disabled]="
+            ticketForm.invalid ||
+            !title.trim() ||
+            !description.trim() ||
+            saving()
+          "
+        >
+          {{ saving() ? 'Skapar ärende…' : 'Skapa ärende' }}
+        </button>
+      </div>
     </fieldset>
+
+    @if (saving()) {
+      <p class="saving-message" role="status">Sparar ditt ärende…</p>
+    }
 
     @if (validationError || error()) {
       <p class="error" role="alert">

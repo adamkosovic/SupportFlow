@@ -18,20 +18,10 @@
     </header>
 
     <div class="detail-grid">
-      <div class="detail-main">
-        <section class="detail-card">
-          <h2>Beskrivning</h2>
-          <p class="description">{{ currentTicket.description }}</p>
-        </section>
-
-        <app-ticket-comments [ticketId]="currentTicket.id" />
-        <app-ticket-history
-          [ticketId]="currentTicket.id"
-          [refreshKey]="historyRefreshKey()"
-        />
-      </div>
-
-      <aside class="detail-card" aria-label="Ärendeinformation">
+      <aside
+        class="detail-card information-card"
+        aria-label="Ärendeinformation"
+      >
         <h2>Ärendeinformation</h2>
 
         <dl>
@@ -48,7 +38,16 @@
           </dd>
 
           <dt>Prioritet</dt>
-          <dd>{{ currentTicket.priority }}</dd>
+          <dd>
+            <span
+              class="priority-badge"
+              [class.priority-low]="currentTicket.priority === 'Låg'"
+              [class.priority-normal]="currentTicket.priority === 'Normal'"
+              [class.priority-high]="currentTicket.priority === 'Hög'"
+            >
+              {{ currentTicket.priority }}
+            </span>
+          </dd>
 
           <dt>Skapat</dt>
           <dd>
@@ -124,6 +123,19 @@
           </div>
         }
       </aside>
+      <div class="detail-main">
+        <section class="detail-card">
+          <h2>Beskrivning</h2>
+          <p class="description">{{ currentTicket.description }}</p>
+        </section>
+
+        <app-ticket-comments [ticketId]="currentTicket.id" />
+        <app-ticket-history
+          [ticketId]="currentTicket.id"
+          [refreshKey]="historyRefreshKey()"
+        />
+      </div>
+
     </div>
   }
 </main>

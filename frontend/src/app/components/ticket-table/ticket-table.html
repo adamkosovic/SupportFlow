@@ -23,11 +23,16 @@
           <td class="ticket-info">
             <span class="ticket-id">#{{ ticket.id }}</span>
 
-            <a class="ticket-link" [routerLink]="['/tickets', ticket.id]">
+            <a
+              class="ticket-link"
+              [routerLink]="['/tickets', ticket.id]"
+            >
               {{ ticket.title }}
             </a>
 
-            <p class="ticket-description">{{ ticket.description }}</p>
+            <p class="ticket-description">
+              {{ ticket.description }}
+            </p>
           </td>
 
           <td>
@@ -90,4 +95,95 @@
       }
     </tbody>
   </table>
+</div>
+
+<div class="mobile-ticket-list">
+  @for (ticket of tickets(); track ticket.id) {
+    <article
+      class="ticket-card"
+      [attr.aria-labelledby]="'mobile-ticket-title-' + ticket.id"
+      [attr.aria-busy]="updatingId() === ticket.id"
+    >
+      <span class="ticket-id">ÄRENDE #{{ ticket.id }}</span>
+
+      <h2 [id]="'mobile-ticket-title-' + ticket.id">
+        <a
+          class="ticket-link"
+          [routerLink]="['/tickets', ticket.id]"
+        >
+          {{ ticket.title }}
+        </a>
+      </h2>
+
+      <p class="ticket-description">{{ ticket.description }}</p>
+
+      <dl class="ticket-meta">
+        <div>
+          <dt>Status</dt>
+          <dd>
+            <span
+              class="status-badge"
+              [class.status-new]="ticket.status === 'Nytt'"
+              [class.status-ongoing]="ticket.status === 'Pågår'"
+              [class.status-resolved]="ticket.status === 'Löst'"
+            >
+              <span class="status-dot" aria-hidden="true"></span>
+              {{ ticket.status }}
+            </span>
+          </dd>
+        </div>
+
+        <div>
+          <dt>Prioritet</dt>
+          <dd>
+            <span
+              class="priority-badge"
+              [class.priority-low]="ticket.priority === 'Låg'"
+              [class.priority-normal]="ticket.priority === 'Normal'"
+              [class.priority-high]="ticket.priority === 'Hög'"
+            >
+              {{ ticket.priority }}
+            </span>
+          </dd>
+        </div>
+
+        <div class="created-meta">
+          <dt>Skapat</dt>
+          <dd>
+            <time [attr.datetime]="ticket.createdAt">
+              {{ ticket.createdAt | date:'yyyy-MM-dd HH:mm' }}
+            </time>
+          </dd>
+        </div>
+      </dl>
+
+      @if (canManage()) {
+        <div class="mobile-status-control">
+          <label [for]="'mobile-status-' + ticket.id">
+            Ändra status
+          </label>
+
+          <select
+            [id]="'mobile-status-' + ticket.id"
+            [value]="ticket.status"
+            [disabled]="updatingId() !== null"
+            (change)="changeStatus(ticket, $event)"
+          >
+            <option value="Nytt">Nytt</option>
+            <option value="Pågår">Pågår</option>
+            <option value="Löst">Löst</option>
+          </select>
+
+          @if (updatingId() === ticket.id) {
+            <small role="status">Sparar…</small>
+          }
+        </div>
+      }
+    </article>
+  } @empty {
+    <div class="empty-state mobile-empty-state">
+      <strong>Inga ärenden att visa</strong>
+      <p>Skapa ett ärende eller ändra dina sökfilter.</p>
+    </div>
+  }
 </div>
