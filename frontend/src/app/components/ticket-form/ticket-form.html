@@ -16,7 +16,12 @@
           [(ngModel)]="title"
           required
           placeholder="Exempel: Problem med skrivaren"
+          maxlength="150"
+          aria-describedby="title-help"
         />
+        <p id="title-help" class="field-help">
+          {{ title.length }} / 150 tecken
+        </p>
       </div>
 
       <div class="form-field">
@@ -30,11 +35,13 @@
           rows="6"
           aria-describedby="description-help"
           placeholder="Beskriv problemet och hur det påverkar ditt arbete…"
+          maxlength="5000"
         ></textarea>
 
         <p id="description-help" class="field-help">
           Berätta gärna när problemet började och vad du redan har provat.
-        </p>
+          <br />
+          {{ description.length }} / 5000 tecken
       </div>
 
       <div class="form-field">

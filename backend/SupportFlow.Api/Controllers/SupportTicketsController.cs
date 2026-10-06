@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -271,10 +272,19 @@ public class SupportTicketsController : ControllerBase
 
 public class CreateTicketRequest
 {
+    [Required(ErrorMessage = "Rubrik måste fyllas i.")]
+    [StringLength(
+        150,
+        ErrorMessage = "Rubriken får vara högst 150 tecken.")]
     public string Title { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "Beskrivning måste fyllas i.")]
+    [StringLength(
+        5000,
+        ErrorMessage = "Beskrivningen får vara högst 5000 tecken.")]
     public string Description { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "Prioritet måste väljas.")]
     public string Priority { get; set; } = "Normal";
 }
 
