@@ -1,12 +1,1382 @@
 {
   "Version": 1,
-  "Hash": "CVvkSr1NHOGJCzkSkotYyMK21Ltp7rXZVyMcJt3A+yw=",
+  "Hash": "wQKzrVv66sGNmYgL8l6GHT5g1e2/Ltf4VH8tnjf8nMA=",
   "Source": "SupportFlow.Api",
   "BasePath": "_content/SupportFlow.Api",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": [],
-  "Endpoints": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "SupportFlow.Api/wwwroot",
+      "Source": "SupportFlow.Api",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/",
+      "BasePath": "_content/SupportFlow.Api",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "styles-QYCVILIN#[.{fingerprint=igvpfn2qmw}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "20r9k5qvgw",
+      "Integrity": "8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "index#[.{fingerprint=sob34zzhp3}]?.html.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "y8nxhsn8n9",
+      "Integrity": "DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "main-CF334JRB#[.{fingerprint=2908aroxr7}]?.js.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "waphhf4jqz",
+      "Integrity": "WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "favicon#[.{fingerprint=vagikyz9qx}]?.ico.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "1ew8k6gcy8",
+      "Integrity": "+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "favicon#[.{fingerprint}]?.ico",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "vagikyz9qx",
+      "Integrity": "+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/favicon.ico"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "index#[.{fingerprint}]?.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "sob34zzhp3",
+      "Integrity": "7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/index.html"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "main-CF334JRB#[.{fingerprint}]?.js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2908aroxr7",
+      "Integrity": "RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/main-CF334JRB.js"
+    },
+    {
+      "Identity": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css",
+      "SourceId": "SupportFlow.Api",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/",
+      "BasePath": "_content/SupportFlow.Api",
+      "RelativePath": "styles-QYCVILIN#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "igvpfn2qmw",
+      "Integrity": "gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/styles-QYCVILIN.css"
+    }
+  ],
+  "Endpoints": [
+    {
+      "Route": "favicon.ico",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000237360551"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4212"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.ico",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15086"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.ico.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.vagikyz9qx.ico",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000237360551"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4212"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vagikyz9qx"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.ico"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.vagikyz9qx.ico",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "15086"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vagikyz9qx"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.ico"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+RAr6AKXwFKSB2B75Sd7T5C8qJ1lmI+hdxuRx4lOgV8="
+        }
+      ]
+    },
+    {
+      "Route": "favicon.vagikyz9qx.ico.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "4212"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/x-icon"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "vagikyz9qx"
+        },
+        {
+          "Name": "label",
+          "Value": "favicon.ico.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-+cHE1ylNo409cfNU42PSCC4JmROdYzQ5VLTZJ0ypyxo="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002136752137"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "467"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc="
+        }
+      ]
+    },
+    {
+      "Route": "index.html",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "733"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc="
+        }
+      ]
+    },
+    {
+      "Route": "index.html.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg="
+        }
+      ]
+    },
+    {
+      "Route": "index.sob34zzhp3.html",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.002136752137"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "467"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sob34zzhp3"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc="
+        }
+      ]
+    },
+    {
+      "Route": "index.sob34zzhp3.html",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "733"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sob34zzhp3"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-7L1zEw0DzmxCuVQwet97fIf/Yw8akD7jPtJC/zeaGvc="
+        }
+      ]
+    },
+    {
+      "Route": "index.sob34zzhp3.html.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "467"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/html"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "sob34zzhp3"
+        },
+        {
+          "Name": "label",
+          "Value": "index.html.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-DvvSQETk9+SpnLlde0zrVW1asnucz4ZQxbICocchVrg="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.2908aroxr7.js",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000008830022"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113249"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2908aroxr7"
+        },
+        {
+          "Name": "label",
+          "Value": "main-CF334JRB.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.2908aroxr7.js",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "399249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2908aroxr7"
+        },
+        {
+          "Name": "label",
+          "Value": "main-CF334JRB.js"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.2908aroxr7.js.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2908aroxr7"
+        },
+        {
+          "Name": "label",
+          "Value": "main-CF334JRB.js.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.js",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.000008830022"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113249"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.js",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "399249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RglsRqIjOMgVyLJ/tUknQ6rrGXDhSQS3+YpdLZsLwIE="
+        }
+      ]
+    },
+    {
+      "Route": "main-CF334JRB.js.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "113249"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/javascript"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-WOfwprcsozk2/pesv28knPQSiHNzcVWzTDRCfPq5K0Y="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.css",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001314060447"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "760"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.css",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1700"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.css.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "760"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.igvpfn2qmw.css",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001314060447"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "760"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "igvpfn2qmw"
+        },
+        {
+          "Name": "label",
+          "Value": "styles-QYCVILIN.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.igvpfn2qmw.css",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1700"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "igvpfn2qmw"
+        },
+        {
+          "Name": "label",
+          "Value": "styles-QYCVILIN.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-gjaeZKAW1rBCLU6U2IpbYghmIFxU0PjC54yIwInLy70="
+        }
+      ]
+    },
+    {
+      "Route": "styles-QYCVILIN.igvpfn2qmw.css.gz",
+      "AssetFile": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "760"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 06 Oct 2026 10:04:23 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "igvpfn2qmw"
+        },
+        {
+          "Name": "label",
+          "Value": "styles-QYCVILIN.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-8hh+nAZre3NpiYZ4F0I6ynve8g+CL0EJ+0Z/UFJQ2pM="
+        }
+      ]
+    }
+  ]
 }

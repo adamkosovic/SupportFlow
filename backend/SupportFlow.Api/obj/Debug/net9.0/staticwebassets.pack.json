@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/favicon.ico",
+      "PackagePath": "staticwebassets/favicon.ico"
+    },
+    {
+      "Id": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/index.html",
+      "PackagePath": "staticwebassets/index.html"
+    },
+    {
+      "Id": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/main-CF334JRB.js",
+      "PackagePath": "staticwebassets/main-CF334JRB.js"
+    },
+    {
+      "Id": "/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/wwwroot/styles-QYCVILIN.css",
+      "PackagePath": "staticwebassets/styles-QYCVILIN.css"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.SupportFlow.Api.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.SupportFlow.Api.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.build.SupportFlow.Api.props",
+      "PackagePath": "build\\SupportFlow.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildMultiTargeting.SupportFlow.Api.props",
+      "PackagePath": "buildMultiTargeting\\SupportFlow.Api.props"
+    },
+    {
+      "Id": "obj/Debug/net9.0/staticwebassets/msbuild.buildTransitive.SupportFlow.Api.props",
+      "PackagePath": "buildTransitive\\SupportFlow.Api.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

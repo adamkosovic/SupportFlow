@@ -245,3 +245,8 @@
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/SupportFlow.Api.genruntimeconfig.cache
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/ref/SupportFlow.Api.dll
 /Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/bin/Debug/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/bin/Debug/net9.0/SupportFlow.Api.staticwebassets.runtime.json
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/qzbt0dlnip-vagikyz9qx.gz
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/72ikidv6s6-sob34zzhp3.gz
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/avzytq712h-2908aroxr7.gz
+/Users/adamkosovic/Utveckling/Projekt/supportflow/backend/SupportFlow.Api/obj/Debug/net9.0/compressed/32gmiuxfus-igvpfn2qmw.gz

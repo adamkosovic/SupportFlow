@@ -115,9 +115,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseDefaultFiles();
+app.UseStaticFiles();
+
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
 
 app.MapGroup("/api/auth")
@@ -153,5 +155,9 @@ app.MapPost("/api/auth/logout", async (
     return Results.NoContent();
 })
 .RequireAuthorization();
+
+app.MapFallback("/api/{**path}", () => Results.NotFound());
+
+app.MapFallbackToFile("index.html");
 
 app.Run();
