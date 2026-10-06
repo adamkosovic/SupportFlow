@@ -3,10 +3,11 @@ import {
   computed,
   effect,
   inject,
-  OnInit,
   signal,
-  untracked
+  untracked,
+  DestroyRef
 } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 
@@ -22,8 +23,10 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './tickets-page.html',
   styleUrl: './tickets-page.scss'
 })
-export class TicketsPage implements OnInit {
+export class TicketsPage {
   private readonly ticketService = inject(TicketService);
+  private readonly destroyRef = inject(DestroyRef);
+
   readonly authService = inject(AuthService);
 
   readonly tickets = signal<SupportTicket[]>([]);
@@ -37,6 +40,7 @@ export class TicketsPage implements OnInit {
   readonly statusFilter = signal('Alla');
   readonly priorityFilter = signal('Alla');
   readonly sortOrder = signal('newest');
+  readonly assignmentFilter = signal('all');
 
   readonly pageSize = 10;
   readonly currentPage = signal(1);
@@ -81,7 +85,6 @@ export class TicketsPage implements OnInit {
           (priorityRank[b.priority] ?? 0) -
           (priorityRank[a.priority] ?? 0);
 
-        // Vid samma prioritet visas det äldsta ärendet först.
         return priorityDifference || dateDifference || a.id - b.id;
       }
 
@@ -122,8 +125,36 @@ export class TicketsPage implements OnInit {
   );
 
   constructor() {
+    effect(onCleanup => {
+      const assignment = this.authService.isSupport()
+        ? this.assignmentFilter()
+        : 'all';
+
+      untracked(() => {
+        this.loading.set(true);
+        this.error.set('');
+        this.statusError.set('');
+        this.tickets.set([]);
+        this.currentPage.set(1);
+      });
+
+      const subscription = this.ticketService
+        .getTickets(assignment)
+        .subscribe({
+          next: tickets => {
+            this.tickets.set(tickets);
+            this.loading.set(false);
+          },
+          error: () => {
+            this.error.set('Kunde inte hämta ärenden. Försök igen.');
+            this.loading.set(false);
+          }
+        });
+
+      onCleanup(() => subscription.unsubscribe());
+    });
+
     effect(() => {
-      // Börja på första sidan när ett filter eller sorteringen ändras.
       this.searchTerm();
       this.statusFilter();
       this.priorityFilter();
@@ -133,7 +164,6 @@ export class TicketsPage implements OnInit {
     });
 
     effect(() => {
-      // Anpassa sidnumret om antalet träffar minskar.
       const totalPages = this.totalPages();
 
       untracked(() => {
@@ -141,19 +171,6 @@ export class TicketsPage implements OnInit {
           Math.max(1, Math.min(page, totalPages))
         );
       });
-    });
-  }
-
-  ngOnInit(): void {
-    this.ticketService.getTickets().subscribe({
-      next: tickets => {
-        this.tickets.set(tickets);
-        this.loading.set(false);
-      },
-      error: () => {
-        this.error.set('Kunde inte hämta ärenden.');
-        this.loading.set(false);
-      }
     });
   }
 
@@ -168,27 +185,35 @@ export class TicketsPage implements OnInit {
   }
 
   updateStatus(ticket: SupportTicket, status: string): void {
-    if (this.updatingId() !== null || ticket.status === status) {
+    if (
+      !this.authService.isSupport() ||
+      this.loading() ||
+      this.updatingId() !== null ||
+      ticket.status === status
+    ) {
       return;
     }
 
     this.statusError.set('');
     this.updatingId.set(ticket.id);
 
-    this.ticketService.updateStatus(ticket.id, status).subscribe({
-      next: updatedTicket => {
-        this.tickets.update(tickets =>
-          tickets.map(item =>
-            item.id === updatedTicket.id ? updatedTicket : item
-          )
-        );
+    this.ticketService
+      .updateStatus(ticket.id, status)
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe({
+        next: updatedTicket => {
+          this.tickets.update(tickets =>
+            tickets.map(item =>
+              item.id === updatedTicket.id ? updatedTicket : item
+            )
+          );
 
-        this.updatingId.set(null);
-      },
-      error: () => {
-        this.statusError.set('Kunde inte ändra status. Försök igen.');
-        this.updatingId.set(null);
-      }
-    });
+          this.updatingId.set(null);
+        },
+        error: () => {
+          this.statusError.set('Kunde inte ändra status. Försök igen.');
+          this.updatingId.set(null);
+        }
+      });
   }
 }

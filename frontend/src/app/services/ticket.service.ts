@@ -10,8 +10,10 @@ import { TicketAssignment } from '../models/ticket-assignment';
 export class TicketService {
   private readonly http = inject(HttpClient);
 
-  getTickets() {
-    return this.http.get<SupportTicket[]>('/api/tickets');
+  getTickets(assignment: string = 'all') {
+    return this.http.get<SupportTicket[]>('/api/tickets', {
+      params: { assignment }
+    });
   }
 
   getTicket(id: number) {

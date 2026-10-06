@@ -32,22 +32,52 @@ public class SupportTicketsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<SupportTicket>>> GetAll()
+public async Task<ActionResult<List<SupportTicket>>> GetAll(
+    [FromQuery] string assignment = "all",
+    CancellationToken cancellationToken = default)
+{
+    var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+    if (string.IsNullOrWhiteSpace(userId))
     {
-        var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-        if (string.IsNullOrWhiteSpace(userId))
-        {
-            return Unauthorized();
-        }
-
-        var tickets = await AccessibleTickets(userId)
-            .AsNoTracking()
-            .OrderByDescending(ticket => ticket.CreatedAt)
-            .ToListAsync();
-
-        return Ok(tickets);
+        return Unauthorized();
     }
+
+    var allowedFilters = new[] { "all", "mine", "unassigned" };
+
+    if (!allowedFilters.Contains(assignment))
+    {
+        return BadRequest(new
+        {
+            message = "Tilldelningsfiltret måste vara all, mine eller unassigned."
+        });
+    }
+
+    if (assignment != "all" && !User.IsInRole("Support"))
+    {
+        return Forbid();
+    }
+
+    var query = AccessibleTickets(userId).AsNoTracking();
+
+    if (assignment == "mine")
+    {
+        query = query.Where(ticket =>
+            ticket.AssignedToUserId == userId);
+    }
+    else if (assignment == "unassigned")
+    {
+        query = query.Where(ticket =>
+            ticket.AssignedToUserId == null);
+    }
+
+    var tickets = await query
+        .OrderByDescending(ticket => ticket.CreatedAt)
+        .ThenByDescending(ticket => ticket.Id)
+        .ToListAsync(cancellationToken);
+
+    return Ok(tickets);
+}
 
     [HttpGet("{id:int}")]
     public async Task<ActionResult<SupportTicket>> GetById(int id)
