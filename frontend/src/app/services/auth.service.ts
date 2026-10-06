@@ -29,6 +29,13 @@ export class AuthService {
     );
   }
 
+  register(email: string, password: string) {
+    return this.http.post<void>(
+      '/api/auth/register',
+      { email, password }
+    );
+  }
+
   login(email: string, password: string) {
     return this.http.post<void>(
       '/api/auth/login?useCookies=true',

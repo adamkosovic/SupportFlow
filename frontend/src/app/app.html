@@ -1,7 +1,7 @@
-@if (isLoginPage()) {
-  <div class="auth-page">
+@if (isAuthPage()) {
+  <main class="auth-page">
     <router-outlet />
-  </div>
+  </main>
 } @else {
   <app-layout>
     <router-outlet />

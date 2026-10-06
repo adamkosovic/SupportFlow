@@ -6,6 +6,7 @@ import { TicketsPage } from './pages/tickets-page/tickets-page';
 import { CreateTicket } from './pages/create-ticket/create-ticket';
 import { TicketDetail } from './pages/ticket-detail/ticket-detail';
 import { Login } from './pages/login/login';
+import { Register } from './pages/register/register';
 
 export const routes: Routes = [
   {
@@ -17,6 +18,11 @@ export const routes: Routes = [
     path: 'login',
     component: Login,
     title: 'Logga in | SupportFlow'
+  },
+  {
+    path: 'register',
+    component: Register,
+    title: 'Skapa konto | SupportFlow'
   },
   {
     path: 'dashboard',

@@ -1,0 +1,80 @@
+<section class="register-card" aria-labelledby="register-heading">
+  <a class="brand" routerLink="/login">SupportFlow</a>
+
+  <h1 id="register-heading">Skapa konto</h1>
+  <p class="intro">
+    Skapa ett konto för att registrera och följa dina IT-supportärenden.
+  </p>
+
+  @if (success()) {
+    <div class="success-message" role="status">
+      <h2>Ditt konto har skapats</h2>
+      <p>Du kan nu logga in med din e-postadress och ditt lösenord.</p>
+    </div>
+
+    <a class="primary-link" routerLink="/login">
+      Gå till inloggningen
+    </a>
+  } @else {
+    <form #registerForm="ngForm" (ngSubmit)="submit(registerForm)">
+      <fieldset [disabled]="saving()">
+        <label for="register-email">E-postadress</label>
+        <input
+          id="register-email"
+          name="email"
+          type="email"
+          autocomplete="username"
+          [(ngModel)]="email"
+          required
+          email
+        />
+
+        <label for="register-password">Lösenord</label>
+        <input
+          id="register-password"
+          name="password"
+          type="password"
+          autocomplete="new-password"
+          aria-describedby="password-help"
+          [(ngModel)]="password"
+          required
+          minlength="8"
+        />
+
+        <p id="password-help" class="password-help">
+          Minst 8 tecken med stor och liten bokstav, siffra och specialtecken.
+        </p>
+
+        <label for="confirm-password">Bekräfta lösenord</label>
+        <input
+          id="confirm-password"
+          name="confirmPassword"
+          type="password"
+          autocomplete="new-password"
+          [(ngModel)]="confirmPassword"
+          required
+        />
+
+        <button
+          type="submit"
+          [disabled]="registerForm.invalid || saving()"
+        >
+          {{ saving() ? 'Skapar konto…' : 'Skapa konto' }}
+        </button>
+      </fieldset>
+
+      @if (saving()) {
+        <p role="status">Skapar ditt konto…</p>
+      }
+
+      @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+      }
+    </form>
+
+    <p class="login-link">
+      Har du redan ett konto?
+      <a routerLink="/login">Logga in</a>
+    </p>
+  }
+</section>

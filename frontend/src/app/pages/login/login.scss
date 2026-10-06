@@ -61,3 +61,19 @@ button {
     padding: 24px;
   }
 }
+
+.register-link {
+  margin: 24px 0 0;
+  color: #64748b;
+  text-align: center;
+}
+
+.register-link a {
+  color: #2457d6;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
