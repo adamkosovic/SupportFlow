@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SupportFlow.Api.Data;
+using SupportFlow.Api.Models;
 
 namespace SupportFlow.Api.Controllers;
 
@@ -67,20 +68,25 @@ public class TicketAssignmentController : ControllerBase
             return Unauthorized();
         }
 
-        var userExists = await _context.Users
-            .AnyAsync(user => user.Id == userId, cancellationToken);
+        var user = await _context.Users
+            .AsNoTracking()
+            .Where(user => user.Id == userId)
+            .Select(user => new { user.Email })
+            .FirstOrDefaultAsync(cancellationToken);
 
-        if (!userExists)
+        if (user is null)
         {
             return Unauthorized();
         }
 
-        // Tilldela bara om ärendet är ledigt eller redan tillhör mig.
+        await using var transaction = await _context.Database
+            .BeginTransactionAsync(cancellationToken);
+
+        // Endast ett ledigt ärende kan få en ny handläggare.
         var updated = await _context.Tickets
             .Where(ticket =>
                 ticket.Id == ticketId &&
-                (ticket.AssignedToUserId == null ||
-                 ticket.AssignedToUserId == userId))
+                ticket.AssignedToUserId == null)
             .ExecuteUpdateAsync(
                 setters => setters.SetProperty(
                     ticket => ticket.AssignedToUserId,
@@ -89,15 +95,37 @@ public class TicketAssignmentController : ControllerBase
 
         if (updated > 0)
         {
+            _context.TicketHistories.Add(new TicketHistory
+            {
+                SupportTicketId = ticketId,
+                Action = "Assigned",
+                OldValue = null,
+                NewValue = user.Email,
+                ChangedByUserId = userId,
+                ChangedByEmail = user.Email
+            });
+
+            await _context.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
+
             return NoContent();
         }
 
-        var ticketExists = await _context.Tickets
-            .AnyAsync(ticket => ticket.Id == ticketId, cancellationToken);
+        var ticket = await _context.Tickets
+            .AsNoTracking()
+            .Where(ticket => ticket.Id == ticketId)
+            .Select(ticket => new { ticket.AssignedToUserId })
+            .FirstOrDefaultAsync(cancellationToken);
 
-        if (!ticketExists)
+        if (ticket is null)
         {
             return NotFound();
+        }
+
+        // Ärendet tillhör redan mig: ingen ändring eller ny historik.
+        if (ticket.AssignedToUserId == userId)
+        {
+            return NoContent();
         }
 
         return Conflict(new
@@ -119,6 +147,21 @@ public class TicketAssignmentController : ControllerBase
             return Unauthorized();
         }
 
+        var user = await _context.Users
+            .AsNoTracking()
+            .Where(user => user.Id == userId)
+            .Select(user => new { user.Email })
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (user is null)
+        {
+            return Unauthorized();
+        }
+
+        await using var transaction = await _context.Database
+            .BeginTransactionAsync(cancellationToken);
+
+        // Jag kan endast släppa ärenden som är tilldelade mig.
         var updated = await _context.Tickets
             .Where(ticket =>
                 ticket.Id == ticketId &&
@@ -131,11 +174,26 @@ public class TicketAssignmentController : ControllerBase
 
         if (updated > 0)
         {
+            _context.TicketHistories.Add(new TicketHistory
+            {
+                SupportTicketId = ticketId,
+                Action = "AssignmentReleased",
+                OldValue = user.Email,
+                NewValue = null,
+                ChangedByUserId = userId,
+                ChangedByEmail = user.Email
+            });
+
+            await _context.SaveChangesAsync(cancellationToken);
+            await transaction.CommitAsync(cancellationToken);
+
             return NoContent();
         }
 
         var ticketExists = await _context.Tickets
-            .AnyAsync(ticket => ticket.Id == ticketId, cancellationToken);
+            .AnyAsync(
+                ticket => ticket.Id == ticketId,
+                cancellationToken);
 
         if (!ticketExists)
         {

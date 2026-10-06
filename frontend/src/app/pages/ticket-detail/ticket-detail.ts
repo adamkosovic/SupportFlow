@@ -179,4 +179,8 @@ export class TicketDetail {
         }
       });
   }
+
+  refreshHistory(): void {
+    this.historyRefreshKey.update(value => value + 1);
+  }
 }

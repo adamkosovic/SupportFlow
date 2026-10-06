@@ -58,10 +58,16 @@ export class TicketHistory {
     switch (entry.action) {
       case 'StatusChanged':
         return `ändrade status från ${entry.oldValue} till ${entry.newValue}.`;
-
+  
       case 'PriorityChanged':
         return `ändrade prioritet från ${entry.oldValue} till ${entry.newValue}.`;
-
+  
+      case 'Assigned':
+        return 'tog ansvar för ärendet.';
+  
+      case 'AssignmentReleased':
+        return 'släppte ansvaret för ärendet.';
+  
       default:
         return 'uppdaterade ärendet.';
     }
