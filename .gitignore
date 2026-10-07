@@ -1,1 +1,6 @@
 backend/SupportFlow.Api/wwwroot/
+/publish/
+/supportflow-*.zip
+/backend/SupportFlow.Api/wwwroot/
+**/bin/
+**/obj/
