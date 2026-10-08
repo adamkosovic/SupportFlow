@@ -61,6 +61,17 @@ builder.Services.AddAuthorization();
 
 var app = builder.Build();
 
+// Kör befintliga migrationer när inställningen är aktiverad.
+if (app.Configuration.GetValue<bool>("Database:ApplyMigrations"))
+{
+    using var scope = app.Services.CreateScope();
+
+    var db = scope.ServiceProvider
+        .GetRequiredService<AppDbContext>();
+
+    await db.Database.MigrateAsync();
+}
+
 // Aktiveras lokalt, eller uttryckligen via konfiguration.
 // Används senare för att ge ett befintligt konto Support-rollen.
 var seedEnabled = app.Environment.IsDevelopment() ||
