@@ -1,0 +1,13 @@
+.git
+**/node_modules
+**/dist
+**/.angular
+**/bin
+**/obj
+backend/SupportFlow.Api/wwwroot
+**/appsettings.Development.json
+**/.env
+**/.env.*
+publish
+supportflow-*.zip
+.DS_Store
