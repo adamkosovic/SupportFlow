@@ -11,7 +11,6 @@ och hjälpa till att lösa problemen.
 👉 [Öppna SupportFlow](https://supportflow-adamkosovic.up.railway.app)
 
 Använd endast testuppgifter och ett unikt testlösenord.
-En varning i Chrome undersöks fortfarande.
 
 ## ✨ Vad kan man göra?
 
